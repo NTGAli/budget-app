@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "budget app"
 include(":app")
 include(":components")
+

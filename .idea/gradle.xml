@@ -10,7 +10,10 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+<<<<<<< HEAD
             <option value="$PROJECT_DIR$/components" />
+=======
+>>>>>>> a46845c979f202b7969e25cb36f084653c6e0c2b
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

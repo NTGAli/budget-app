@@ -62,12 +62,12 @@ fun Button(
                     background = MaterialTheme.colorScheme.primary
                     borderColor = MaterialTheme.colorScheme.primary
                     textColor = MaterialTheme.colorScheme.onPrimary
-                    loadingColor = MaterialTheme.colorScheme.onPrimary
+                    loadingColor = MaterialTheme.colorScheme.background
                 }
                 ButtonStyle.Outline -> {
                     background = Color.Transparent
                     borderColor = MaterialTheme.colorScheme.primary
-                    textColor = MaterialTheme.colorScheme.onPrimaryContainer
+                    textColor = MaterialTheme.colorScheme.primary
                 }
                 ButtonStyle.TextOnly -> {
                     background = Color.Transparent

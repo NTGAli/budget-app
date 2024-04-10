@@ -16,11 +16,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ntg.budgetapp.ui.theme.BudgetAppTheme
 import com.ntg.components.Button
 import com.ntg.components.ButtonSize
+import com.ntg.components.ButtonType
+import com.ntg.components.Card
+import com.ntg.components.MessageBox
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,33 +44,67 @@ class MainActivity : ComponentActivity() {
                     }
                     Column {
                         Button(
-                            modifier = Modifier.fillMaxWidth().padding(top = 16.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 16.dp),
                             text = "Test button", loading = click, size = ButtonSize.XL){
                             click = !click
                         }
 
                         Button(
-                            modifier = Modifier.fillMaxWidth().padding(top = 16.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 16.dp),
                             text = "Test button", loading = click, size = ButtonSize.LG){
                             click = !click
                         }
 
 
                         Button(
-                            modifier = Modifier.fillMaxWidth().padding(top = 16.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 16.dp),
                             text = "Test button", loading = click, size = ButtonSize.MD){
                             click = !click
                         }
 
 
                         Button(
-                            modifier = Modifier.fillMaxWidth().padding(top = 16.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 16.dp),
                             text = "Test button", loading = click, size = ButtonSize.XS){
                             click = !click
                         }
 
 
+                        MessageBox(
+                            modifier = Modifier.padding(top = 16.dp),
+                            text = "Image Backup Available Only with Paid Subscription Plans", type = ButtonType.Primary)
 
+                        MessageBox(
+                            modifier = Modifier.padding(top = 16.dp),
+                            text = "Image Backup Available Only with Paid Subscription Plans", type = ButtonType.Secondary)
+
+                        MessageBox(
+                            modifier = Modifier.padding(top = 16.dp),
+                            text = "Image Backup Available Only with Paid Subscription Plans", type = ButtonType.Success)
+
+                        MessageBox(
+                            modifier = Modifier.padding(top = 16.dp),
+                            text = "Image Backup Available Only with Paid Subscription Plans", type = ButtonType.Error)
+
+                        MessageBox(
+                            modifier = Modifier.padding(top = 16.dp),
+                            text = "Image Backup Available Only with Paid Subscription Plans", type = ButtonType.Primary, textButton = "button")
+
+                        MessageBox(
+                            modifier = Modifier.padding(top = 16.dp),
+                            text = "Image Backup Available Only with Paid Subscription Plans", type = ButtonType.Primary, icon = painterResource(
+                                id = R.drawable.diamond
+                            ))
+
+                        Card(card = ImageVector.vectorResource(R.drawable.card))
                     }
                 }
             }

@@ -189,7 +189,6 @@ private fun CardInfo(
 
     Column(
         modifier = modifier
-            .fillMaxWidth()
             .padding(bottom = 32.dp)
     ) {
 

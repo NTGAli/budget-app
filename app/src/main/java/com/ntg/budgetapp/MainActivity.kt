@@ -35,6 +35,7 @@ import com.ntg.components.Button
 import com.ntg.components.ButtonSize
 import com.ntg.components.ButtonType
 import com.ntg.components.Card
+import com.ntg.components.Chips
 import com.ntg.components.CircleChart
 import com.ntg.components.MessageBox
 import com.ntg.model.DonutChartData
@@ -150,6 +151,31 @@ class MainActivity : ComponentActivity() {
                                         Text(text)
                                     }
                                 }
+                            }
+                            
+                            
+                            Chips(
+                                modifier = Modifier.padding(top = 24.dp),
+                                title = "From: April 8,2024",
+                                dismiss = true
+                            ) {
+
+                            }
+
+                            Chips(
+                                modifier = Modifier.padding(top = 24.dp),
+                                title = "From: April 8,2024",
+                                dismiss = false
+                            ) {
+
+                            }
+
+                            Chips(
+                                modifier = Modifier.padding(top = 24.dp),
+                                icon = painterResource(id = R.drawable.plus),
+                                dismiss = true
+                            ) {
+
                             }
 
                             Spacer(modifier = Modifier.padding(290.dp))

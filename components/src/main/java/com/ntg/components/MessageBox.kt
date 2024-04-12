@@ -25,24 +25,24 @@ fun MessageBox(
 ){
 
     var background = MaterialTheme.colorScheme.primaryContainer
-    var textColor = MaterialTheme.colorScheme.primary
+    var textColor = MaterialTheme.colorScheme.onPrimaryContainer
 
     when(type){
         ButtonType.Primary -> {
             background = MaterialTheme.colorScheme.primaryContainer
-            textColor = MaterialTheme.colorScheme.primary
+            textColor = MaterialTheme.colorScheme.onPrimaryContainer
         }
         ButtonType.Secondary -> {
             background = MaterialTheme.colorScheme.secondaryContainer
-            textColor = MaterialTheme.colorScheme.secondary
+            textColor = MaterialTheme.colorScheme.onSecondaryContainer
         }
         ButtonType.Success -> {
             background = MaterialTheme.colorScheme.tertiaryContainer
-            textColor = MaterialTheme.colorScheme.tertiary
+            textColor = MaterialTheme.colorScheme.onTertiaryContainer
         }
         ButtonType.Error -> {
             background = MaterialTheme.colorScheme.errorContainer
-            textColor = MaterialTheme.colorScheme.error
+            textColor = MaterialTheme.colorScheme.onErrorContainer
         }
     }
 
@@ -61,7 +61,9 @@ fun MessageBox(
                 painter = icon, contentDescription = "icon", tint = textColor)
         }
 
-        Text(text = text, style = MaterialTheme.typography.labelSmall, color = textColor)
+        Text(
+            modifier = Modifier.weight(1f),
+            text = text, style = MaterialTheme.typography.labelSmall, color = textColor)
 
         if (textButton != null){
             Button(

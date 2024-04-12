@@ -101,7 +101,7 @@ fun BudgetAppTheme(
 //            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
 //        }
 
-        darkTheme -> DarkColorScheme
+        darkTheme -> DarkColors
         else -> LightColors
     }
     val view = LocalView.current

@@ -4,9 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -42,69 +44,77 @@ class MainActivity : ComponentActivity() {
                     var click by remember {
                         mutableStateOf(false)
                     }
-                    Column {
-                        Button(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(top = 16.dp),
-                            text = "Test button", loading = click, size = ButtonSize.XL){
-                            click = !click
+                    LazyColumn {
+                        item {
+                            Button(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(top = 16.dp),
+                                text = "Test button", loading = click, size = ButtonSize.XL){
+                                click = !click
+                            }
+
+                            Button(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(top = 16.dp),
+                                text = "Test button", loading = click, size = ButtonSize.LG){
+                                click = !click
+                            }
+
+
+                            Button(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(top = 16.dp),
+                                text = "Test button", loading = click, size = ButtonSize.MD){
+                                click = !click
+                            }
+
+
+                            Button(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(top = 16.dp),
+                                text = "Test button", loading = click, size = ButtonSize.XS){
+                                click = !click
+                            }
+
+
+                            MessageBox(
+                                modifier = Modifier.padding(top = 16.dp),
+                                text = "Image Backup Available Only with Paid Subscription Plans", type = ButtonType.Primary)
+
+                            MessageBox(
+                                modifier = Modifier.padding(top = 16.dp),
+                                text = "Image Backup Available Only with Paid Subscription Plans", type = ButtonType.Secondary)
+
+                            MessageBox(
+                                modifier = Modifier.padding(top = 16.dp),
+                                text = "Image Backup Available Only with Paid Subscription Plans", type = ButtonType.Success)
+
+                            MessageBox(
+                                modifier = Modifier.padding(top = 16.dp),
+                                text = "Image Backup Available Only with Paid Subscription Plans", type = ButtonType.Error)
+
+                            MessageBox(
+                                modifier = Modifier.padding(top = 16.dp),
+                                text = "Image Backup Available Only with Paid Subscription Plans", type = ButtonType.Primary, textButton = "button")
+
+                            MessageBox(
+                                modifier = Modifier.padding(top = 16.dp),
+                                text = "Image Backup Available Only with Paid Subscription Plans", type = ButtonType.Primary, icon = painterResource(
+                                    id = R.drawable.diamond
+                                ))
+
+                            Card(
+                                modifier = Modifier.padding(top = 24.dp),
+                                card = ImageVector.vectorResource(R.drawable.card),
+                                cardNumber = "4111111111111111", name = "Ali Nateghi", fullView = click)
+
+
+                            Spacer(modifier = Modifier.padding(290.dp))
                         }
-
-                        Button(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(top = 16.dp),
-                            text = "Test button", loading = click, size = ButtonSize.LG){
-                            click = !click
-                        }
-
-
-                        Button(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(top = 16.dp),
-                            text = "Test button", loading = click, size = ButtonSize.MD){
-                            click = !click
-                        }
-
-
-                        Button(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(top = 16.dp),
-                            text = "Test button", loading = click, size = ButtonSize.XS){
-                            click = !click
-                        }
-
-
-                        MessageBox(
-                            modifier = Modifier.padding(top = 16.dp),
-                            text = "Image Backup Available Only with Paid Subscription Plans", type = ButtonType.Primary)
-
-                        MessageBox(
-                            modifier = Modifier.padding(top = 16.dp),
-                            text = "Image Backup Available Only with Paid Subscription Plans", type = ButtonType.Secondary)
-
-                        MessageBox(
-                            modifier = Modifier.padding(top = 16.dp),
-                            text = "Image Backup Available Only with Paid Subscription Plans", type = ButtonType.Success)
-
-                        MessageBox(
-                            modifier = Modifier.padding(top = 16.dp),
-                            text = "Image Backup Available Only with Paid Subscription Plans", type = ButtonType.Error)
-
-                        MessageBox(
-                            modifier = Modifier.padding(top = 16.dp),
-                            text = "Image Backup Available Only with Paid Subscription Plans", type = ButtonType.Primary, textButton = "button")
-
-                        MessageBox(
-                            modifier = Modifier.padding(top = 16.dp),
-                            text = "Image Backup Available Only with Paid Subscription Plans", type = ButtonType.Primary, icon = painterResource(
-                                id = R.drawable.diamond
-                            ))
-
-                        Card(card = ImageVector.vectorResource(R.drawable.card))
                     }
                 }
             }

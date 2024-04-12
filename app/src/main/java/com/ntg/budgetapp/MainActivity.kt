@@ -3,6 +3,7 @@ package com.ntg.budgetapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,6 +18,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
@@ -24,11 +26,19 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ntg.budgetapp.ui.theme.BudgetAppTheme
+import com.ntg.budgetapp.ui.theme.ChunLiBlue100
+import com.ntg.budgetapp.ui.theme.ChunLiBlue200
+import com.ntg.budgetapp.ui.theme.ChunLiBlue300
+import com.ntg.budgetapp.ui.theme.ChunLiBlue400
+import com.ntg.budgetapp.ui.theme.ChunLiBlue500
 import com.ntg.components.Button
 import com.ntg.components.ButtonSize
 import com.ntg.components.ButtonType
 import com.ntg.components.Card
+import com.ntg.components.CircleChart
 import com.ntg.components.MessageBox
+import com.ntg.model.DonutChartData
+import com.ntg.model.DonutChartDataCollection
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -112,6 +122,35 @@ class MainActivity : ComponentActivity() {
                                 card = ImageVector.vectorResource(R.drawable.card),
                                 cardNumber = "4111111111111111", name = "Ali Nateghi", fullView = click)
 
+
+                            val viewData = DonutChartDataCollection(
+                                listOf(
+                                    DonutChartData(1200.0f, ChunLiBlue500, title = "Food & Groceries"),
+                                    DonutChartData(1500.0f, ChunLiBlue400, title = "Rent"),
+                                    DonutChartData(300.0f, ChunLiBlue300, title = "Gas"),
+                                    DonutChartData(700.0f, ChunLiBlue200, title = "Online Purchases"),
+                                    DonutChartData(300.0f, ChunLiBlue100, title = "Clothing")
+                                )
+                            )
+
+
+                            CircleChart(modifier = Modifier.padding(top = 24.dp), data = viewData) { selected ->
+                                // 3
+                                AnimatedContent(targetState = selected, label = "") {
+                                    val amount = it?.amount ?: viewData.totalAmount
+                                    val text = it?.title ?: "Total"
+
+                                    // 4
+                                    Column(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        horizontalAlignment = Alignment.CenterHorizontally
+                                    ) {
+                                        Text("$${amount}",
+                                            )
+                                        Text(text)
+                                    }
+                                }
+                            }
 
                             Spacer(modifier = Modifier.padding(290.dp))
                         }

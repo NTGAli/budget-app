@@ -2,6 +2,9 @@ package com.ntg.util
 
 import android.util.Log
 import com.ntg.components.R
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 fun String.mask(mask: String): String {
     var maskedString = ""
@@ -33,4 +36,14 @@ fun detectCardType(cardNumber: String): Int {
         cleanCardNumber.matches("^35(2[89]|[3-8][0-9])[0-9]{12}\$".toRegex()) -> R.drawable.jcb
         else -> -1
     }
+}
+
+fun getTimeAndDate(timestamp: Long): Pair<String, String> {
+    val timeFormat = SimpleDateFormat("h:mm a", Locale.getDefault())
+    val dateFormat = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
+
+    val time = timeFormat.format(Date(timestamp))
+    val date = dateFormat.format(Date(timestamp))
+
+    return Pair(time, date)
 }

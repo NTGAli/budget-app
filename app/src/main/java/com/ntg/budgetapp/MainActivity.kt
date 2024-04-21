@@ -38,6 +38,7 @@ import com.ntg.components.Card
 import com.ntg.components.Chips
 import com.ntg.components.CircleChart
 import com.ntg.components.MessageBox
+import com.ntg.components.TransactionItem
 import com.ntg.model.DonutChartData
 import com.ntg.model.DonutChartDataCollection
 
@@ -176,6 +177,21 @@ class MainActivity : ComponentActivity() {
                                 dismiss = true
                             ) {
 
+                            }
+
+                            
+                            repeat(3){
+                                
+                                TransactionItem(
+                                    modifier = Modifier.padding(horizontal = 16.dp).padding(top = 4.dp),
+                                    title = "Food & Drink",
+                                    time = 1713108246,
+                                    amount = 2300,
+                                    categoryIcon = painterResource(id = R.drawable.diamond),
+                                    onLongCLick = {},
+                                    onCLick = {}
+                                )
+                                
                             }
 
                             Spacer(modifier = Modifier.padding(290.dp))

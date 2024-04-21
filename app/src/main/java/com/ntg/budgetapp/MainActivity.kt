@@ -37,6 +37,7 @@ import com.ntg.components.ButtonType
 import com.ntg.components.Card
 import com.ntg.components.Chips
 import com.ntg.components.CircleChart
+import com.ntg.components.DetailsTable
 import com.ntg.components.MessageBox
 import com.ntg.components.TransactionItem
 import com.ntg.model.DonutChartData
@@ -183,7 +184,9 @@ class MainActivity : ComponentActivity() {
                             repeat(3){
                                 
                                 TransactionItem(
-                                    modifier = Modifier.padding(horizontal = 16.dp).padding(top = 4.dp),
+                                    modifier = Modifier
+                                        .padding(horizontal = 16.dp)
+                                        .padding(top = 4.dp),
                                     title = "Food & Drink",
                                     time = 1713108246,
                                     amount = 2300,
@@ -193,6 +196,11 @@ class MainActivity : ComponentActivity() {
                                 )
                                 
                             }
+
+                            DetailsTable(
+                                modifier = Modifier.padding(horizontal = 32.dp),
+                                items = listOf(Pair("aaa", "aaa"),Pair("aaa", "aaa"),Pair("aaa", "aaa"),Pair("aaa", "aaa")))
+
 
                             Spacer(modifier = Modifier.padding(290.dp))
                         }

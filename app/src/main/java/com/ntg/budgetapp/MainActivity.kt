@@ -41,6 +41,8 @@ import com.ntg.components.Chips
 import com.ntg.components.CircleChart
 import com.ntg.components.DetailsTable
 import com.ntg.components.MessageBox
+import com.ntg.components.TextCheckBox
+import com.ntg.components.TextRadio
 import com.ntg.components.TransactionItem
 import com.ntg.model.DonutChartData
 import com.ntg.model.DonutChartDataCollection
@@ -57,12 +59,26 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
+                    val isChecked = remember {
+                        mutableStateOf(false)
+                    }
+
                     Box {
                         var click by remember {
                             mutableStateOf(false)
                         }
                         LazyColumn {
                             item {
+
+                                TextCheckBox(title = "Test", isChecked = isChecked) {
+                                    isChecked.value = !isChecked.value
+                                }
+
+                                TextRadio(title = "Test Radio", isChecked = isChecked) {
+                                    isChecked.value = !isChecked.value
+                                }
+
+
                                 Button(
                                     modifier = Modifier
                                         .fillMaxWidth()

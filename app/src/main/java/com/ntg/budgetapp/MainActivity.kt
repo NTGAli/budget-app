@@ -42,11 +42,13 @@ import com.ntg.components.CircleChart
 import com.ntg.components.DetailsTable
 import com.ntg.components.MessageBox
 import com.ntg.components.TextCheckBox
+import com.ntg.components.TextDivider
 import com.ntg.components.TextRadio
 import com.ntg.components.TransactionItem
 import com.ntg.model.DonutChartData
 import com.ntg.model.DonutChartDataCollection
 import com.ntg.model.NavigationItem
+import com.ntg.model.TextDividerType
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,6 +61,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
+
                     val isChecked = remember {
                         mutableStateOf(false)
                     }
@@ -69,6 +72,12 @@ class MainActivity : ComponentActivity() {
                         }
                         LazyColumn {
                             item {
+
+                                TextDivider(title = "Helle world")
+                                TextDivider(
+                                    modifier = Modifier.padding(vertical = 16.dp),
+                                    title = "Helle world", type = TextDividerType.CENTER)
+
 
                                 TextCheckBox(title = "Test", isChecked = isChecked) {
                                     isChecked.value = !isChecked.value

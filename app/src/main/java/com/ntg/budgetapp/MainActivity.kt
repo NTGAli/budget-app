@@ -32,23 +32,24 @@ import com.ntg.budgetapp.ui.theme.ChunLiBlue200
 import com.ntg.budgetapp.ui.theme.ChunLiBlue300
 import com.ntg.budgetapp.ui.theme.ChunLiBlue400
 import com.ntg.budgetapp.ui.theme.ChunLiBlue500
-import com.ntg.components.BottomNavigation
-import com.ntg.components.Button
-import com.ntg.components.ButtonSize
-import com.ntg.components.ButtonType
-import com.ntg.components.Card
-import com.ntg.components.Chips
-import com.ntg.components.CircleChart
-import com.ntg.components.DetailsTable
-import com.ntg.components.MessageBox
-import com.ntg.components.TextCheckBox
-import com.ntg.components.TextDivider
-import com.ntg.components.TextRadio
-import com.ntg.components.TransactionItem
-import com.ntg.model.DonutChartData
-import com.ntg.model.DonutChartDataCollection
-import com.ntg.model.NavigationItem
-import com.ntg.model.TextDividerType
+import com.ntg.designsystem.components.AmountReport
+import com.ntg.designsystem.components.BottomNavigation
+import com.ntg.designsystem.components.Button
+import com.ntg.designsystem.components.ButtonSize
+import com.ntg.designsystem.components.ButtonType
+import com.ntg.designsystem.components.Card
+import com.ntg.designsystem.components.Chips
+import com.ntg.designsystem.components.CircleChart
+import com.ntg.designsystem.components.DetailsTable
+import com.ntg.designsystem.components.MessageBox
+import com.ntg.designsystem.components.TextCheckBox
+import com.ntg.designsystem.components.TextDivider
+import com.ntg.designsystem.components.TextRadio
+import com.ntg.designsystem.components.TransactionItem
+import com.ntg.designsystem.model.DonutChartData
+import com.ntg.designsystem.model.DonutChartDataCollection
+import com.ntg.designsystem.model.NavigationItem
+import com.ntg.designsystem.model.TextDividerType
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,100 +74,170 @@ class MainActivity : ComponentActivity() {
                         LazyColumn {
                             item {
 
-                                TextDivider(title = "Helle world")
-                                TextDivider(
+                                com.ntg.designsystem.components.AmountReport(
+                                    modifier = Modifier.padding(
+                                        horizontal = 32.dp,
+                                        vertical = 24.dp
+                                    ),
+                                    outcome = 10000,
+                                    income = 500000
+                                )
+
+                                com.ntg.designsystem.components.TextDivider(title = "Helle world")
+                                com.ntg.designsystem.components.TextDivider(
                                     modifier = Modifier.padding(vertical = 16.dp),
-                                    title = "Helle world", type = TextDividerType.CENTER)
+                                    title = "Helle world",
+                                    type = com.ntg.designsystem.model.TextDividerType.CENTER
+                                )
 
 
-                                TextCheckBox(title = "Test", isChecked = isChecked) {
+                                com.ntg.designsystem.components.TextCheckBox(
+                                    title = "Test",
+                                    isChecked = isChecked
+                                ) {
                                     isChecked.value = !isChecked.value
                                 }
 
-                                TextRadio(title = "Test Radio", isChecked = isChecked) {
+                                com.ntg.designsystem.components.TextRadio(
+                                    title = "Test Radio",
+                                    isChecked = isChecked
+                                ) {
                                     isChecked.value = !isChecked.value
                                 }
 
 
-                                Button(
+                                com.ntg.designsystem.components.Button(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .padding(top = 16.dp),
-                                    text = "Test button", loading = click, size = ButtonSize.XL){
+                                    text = "Test button",
+                                    loading = click,
+                                    size = com.ntg.designsystem.components.ButtonSize.XL
+                                ) {
                                     click = !click
                                 }
 
-                                Button(
+                                com.ntg.designsystem.components.Button(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .padding(top = 16.dp),
-                                    text = "Test button", loading = click, size = ButtonSize.LG){
-                                    click = !click
-                                }
-
-
-                                Button(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(top = 16.dp),
-                                    text = "Test button", loading = click, size = ButtonSize.MD){
-                                    click = !click
-                                }
-
-
-                                Button(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(top = 16.dp),
-                                    text = "Test button", loading = click, size = ButtonSize.XS){
+                                    text = "Test button",
+                                    loading = click,
+                                    size = com.ntg.designsystem.components.ButtonSize.LG
+                                ) {
                                     click = !click
                                 }
 
 
-                                MessageBox(
-                                    modifier = Modifier.padding(top = 16.dp),
-                                    text = "Image Backup Available Only with Paid Subscription Plans", type = ButtonType.Primary)
+                                com.ntg.designsystem.components.Button(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(top = 16.dp),
+                                    text = "Test button",
+                                    loading = click,
+                                    size = com.ntg.designsystem.components.ButtonSize.MD
+                                ) {
+                                    click = !click
+                                }
 
-                                MessageBox(
-                                    modifier = Modifier.padding(top = 16.dp),
-                                    text = "Image Backup Available Only with Paid Subscription Plans", type = ButtonType.Secondary)
 
-                                MessageBox(
-                                    modifier = Modifier.padding(top = 16.dp),
-                                    text = "Image Backup Available Only with Paid Subscription Plans", type = ButtonType.Success)
+                                com.ntg.designsystem.components.Button(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(top = 16.dp),
+                                    text = "Test button",
+                                    loading = click,
+                                    size = com.ntg.designsystem.components.ButtonSize.XS
+                                ) {
+                                    click = !click
+                                }
 
-                                MessageBox(
-                                    modifier = Modifier.padding(top = 16.dp),
-                                    text = "Image Backup Available Only with Paid Subscription Plans", type = ButtonType.Error)
 
-                                MessageBox(
+                                com.ntg.designsystem.components.MessageBox(
                                     modifier = Modifier.padding(top = 16.dp),
-                                    text = "Image Backup Available Only with Paid Subscription Plans", type = ButtonType.Primary, textButton = "button")
+                                    text = "Image Backup Available Only with Paid Subscription Plans",
+                                    type = com.ntg.designsystem.components.ButtonType.Primary
+                                )
 
-                                MessageBox(
+                                com.ntg.designsystem.components.MessageBox(
                                     modifier = Modifier.padding(top = 16.dp),
-                                    text = "Image Backup Available Only with Paid Subscription Plans", type = ButtonType.Primary, icon = painterResource(
+                                    text = "Image Backup Available Only with Paid Subscription Plans",
+                                    type = com.ntg.designsystem.components.ButtonType.Secondary
+                                )
+
+                                com.ntg.designsystem.components.MessageBox(
+                                    modifier = Modifier.padding(top = 16.dp),
+                                    text = "Image Backup Available Only with Paid Subscription Plans",
+                                    type = com.ntg.designsystem.components.ButtonType.Success
+                                )
+
+                                com.ntg.designsystem.components.MessageBox(
+                                    modifier = Modifier.padding(top = 16.dp),
+                                    text = "Image Backup Available Only with Paid Subscription Plans",
+                                    type = com.ntg.designsystem.components.ButtonType.Error
+                                )
+
+                                com.ntg.designsystem.components.MessageBox(
+                                    modifier = Modifier.padding(top = 16.dp),
+                                    text = "Image Backup Available Only with Paid Subscription Plans",
+                                    type = com.ntg.designsystem.components.ButtonType.Primary,
+                                    textButton = "button"
+                                )
+
+                                com.ntg.designsystem.components.MessageBox(
+                                    modifier = Modifier.padding(top = 16.dp),
+                                    text = "Image Backup Available Only with Paid Subscription Plans",
+                                    type = com.ntg.designsystem.components.ButtonType.Primary,
+                                    icon = painterResource(
                                         id = R.drawable.diamond
-                                    ))
+                                    )
+                                )
 
-                                Card(
+                                com.ntg.designsystem.components.Card(
                                     modifier = Modifier.padding(top = 24.dp),
                                     card = ImageVector.vectorResource(R.drawable.card),
-                                    cardNumber = "4111111111111111", name = "Ali Nateghi", fullView = click)
+                                    cardNumber = "4111111111111111",
+                                    name = "Ali Nateghi",
+                                    fullView = click
+                                )
 
 
-                                val viewData = DonutChartDataCollection(
+                                val viewData = com.ntg.designsystem.model.DonutChartDataCollection(
                                     listOf(
-                                        DonutChartData(1200.0f, ChunLiBlue500, title = "Food & Groceries"),
-                                        DonutChartData(1500.0f, ChunLiBlue400, title = "Rent"),
-                                        DonutChartData(300.0f, ChunLiBlue300, title = "Gas"),
-                                        DonutChartData(700.0f, ChunLiBlue200, title = "Online Purchases"),
-                                        DonutChartData(300.0f, ChunLiBlue100, title = "Clothing")
+                                        com.ntg.designsystem.model.DonutChartData(
+                                            1200.0f,
+                                            ChunLiBlue500,
+                                            title = "Food & Groceries"
+                                        ),
+                                        com.ntg.designsystem.model.DonutChartData(
+                                            1500.0f,
+                                            ChunLiBlue400,
+                                            title = "Rent"
+                                        ),
+                                        com.ntg.designsystem.model.DonutChartData(
+                                            300.0f,
+                                            ChunLiBlue300,
+                                            title = "Gas"
+                                        ),
+                                        com.ntg.designsystem.model.DonutChartData(
+                                            700.0f,
+                                            ChunLiBlue200,
+                                            title = "Online Purchases"
+                                        ),
+                                        com.ntg.designsystem.model.DonutChartData(
+                                            300.0f,
+                                            ChunLiBlue100,
+                                            title = "Clothing"
+                                        )
                                     )
                                 )
 
 
-                                CircleChart(modifier = Modifier.padding(top = 24.dp), data = viewData) { selected ->
+                                com.ntg.designsystem.components.CircleChart(
+                                    modifier = Modifier.padding(
+                                        top = 24.dp
+                                    ), data = viewData
+                                ) { selected ->
                                     // 3
                                     AnimatedContent(targetState = selected, label = "") {
                                         val amount = it?.amount ?: viewData.totalAmount
@@ -177,7 +248,8 @@ class MainActivity : ComponentActivity() {
                                             modifier = Modifier.fillMaxWidth(),
                                             horizontalAlignment = Alignment.CenterHorizontally
                                         ) {
-                                            Text("$${amount}",
+                                            Text(
+                                                "$${amount}",
                                             )
                                             Text(text)
                                         }
@@ -185,7 +257,7 @@ class MainActivity : ComponentActivity() {
                                 }
 
 
-                                Chips(
+                                com.ntg.designsystem.components.Chips(
                                     modifier = Modifier.padding(top = 24.dp),
                                     title = "From: April 8,2024",
                                     dismiss = true
@@ -193,7 +265,7 @@ class MainActivity : ComponentActivity() {
 
                                 }
 
-                                Chips(
+                                com.ntg.designsystem.components.Chips(
                                     modifier = Modifier.padding(top = 24.dp),
                                     title = "From: April 8,2024",
                                     dismiss = false
@@ -201,7 +273,7 @@ class MainActivity : ComponentActivity() {
 
                                 }
 
-                                Chips(
+                                com.ntg.designsystem.components.Chips(
                                     modifier = Modifier.padding(top = 24.dp),
                                     icon = painterResource(id = R.drawable.plus),
                                     dismiss = true
@@ -212,7 +284,7 @@ class MainActivity : ComponentActivity() {
 
                                 repeat(3){
 
-                                    TransactionItem(
+                                    com.ntg.designsystem.components.TransactionItem(
                                         modifier = Modifier
                                             .padding(horizontal = 16.dp)
                                             .padding(top = 4.dp),
@@ -226,24 +298,30 @@ class MainActivity : ComponentActivity() {
 
                                 }
 
-                                DetailsTable(
+                                com.ntg.designsystem.components.DetailsTable(
                                     modifier = Modifier.padding(horizontal = 32.dp),
-                                    items = listOf(Pair("aaa", "aaa"),Pair("aaa", "aaa"),Pair("aaa", "aaa"),Pair("aaa", "aaa")))
+                                    items = listOf(
+                                        Pair("aaa", "aaa"),
+                                        Pair("aaa", "aaa"),
+                                        Pair("aaa", "aaa"),
+                                        Pair("aaa", "aaa")
+                                    )
+                                )
 
 
                                 Spacer(modifier = Modifier.padding(290.dp))
                             }
                         }
 
-                        val navs = listOf<NavigationItem>(
-                            NavigationItem(
+                        val navs = listOf<com.ntg.designsystem.model.NavigationItem>(
+                            com.ntg.designsystem.model.NavigationItem(
                                 1,
                                 "test",
                                 painterResource(id = R.drawable.home),
                                 painterResource(id = R.drawable.home),
                                 isSelected = true
                             ),
-                            NavigationItem(
+                            com.ntg.designsystem.model.NavigationItem(
                                 2,
                                 "test",
                                 painterResource(id = R.drawable.user_circle),
@@ -252,7 +330,7 @@ class MainActivity : ComponentActivity() {
                             )
                         )
 
-                        BottomNavigation(
+                        com.ntg.designsystem.components.BottomNavigation(
                             modifier = Modifier.align(Alignment.BottomCenter),
                             items = navs,
                             onCLick = {}

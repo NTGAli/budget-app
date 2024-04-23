@@ -133,6 +133,7 @@ fun TextFieldScreen(navController: NavHostController, id: Int?) {
                 Text(text = "Dropdown", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
                 CustomOutlineTextField(
+                    isCountryShowing = true,
                     modifier = Modifier.clickable(
                         indication = null,
                         interactionSource = remember { MutableInteractionSource() }
@@ -161,7 +162,7 @@ fun TextFieldScreen(navController: NavHostController, id: Int?) {
                             )
                         } else {
                             Icon(
-                                modifier = Modifier.size(18.dp),
+                                modifier = Modifier.size(14.dp),
                                 painter = painterResource(id = R.drawable.ic_drop_down),
                                 contentDescription = "drop_down",
                                 tint = Void900

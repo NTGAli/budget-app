@@ -61,6 +61,7 @@ fun CustomOutlineTextField(
     warningWithoutBorder: Boolean = false,
     warningText: String? = null,
     showSupportingText: Boolean = false,
+    isCountryShowing: Boolean = false,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
@@ -195,9 +196,10 @@ fun CustomOutlineTextField(
                         CoralRed600
                     }
 
-                    readOnly->{
+                    readOnly -> {
                         Void500
                     }
+
                     else -> {
                         Void200
                     }
@@ -217,16 +219,21 @@ fun CustomOutlineTextField(
                 errorTrailingIconColor = Void500,
                 cursorColor = ChunLiBlue500,
                 focusedTextColor = Void900,
-                unfocusedTextColor=Void900,
-                disabledTextColor=when {
-                    readOnly->{
+                unfocusedTextColor = Void900,
+                disabledTextColor = when {
+                    isCountryShowing -> {
+                        Void900
+                    }
+
+                    readOnly -> {
                         Void500
                     }
+
                     else -> {
                         Void200
                     }
                 },
-                errorTextColor=Void900,
+                errorTextColor = Void900,
             )
         )
     }

@@ -8,6 +8,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
@@ -15,9 +16,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -96,14 +99,28 @@ fun ImageItem(
         Row(modifier = modifier
             .horizontalScroll(rememberScrollState())) {
             repeat(imagePath.size){
-                Image(
-                    modifier = Modifier
-                        .padding(end = 8.dp)
-                        .size(64.dp)
-                        .clip(RoundedCornerShape(8.dp))
-                    ,
-                    bitmap = loadImageFromFile(filePath = imagePath[it])!!.asImageBitmap(), contentDescription = null,
-                    contentScale = ContentScale.Crop)
+               Box {
+                   Image(
+                       modifier = Modifier
+                           .padding(end = 12.dp)
+                           .size(64.dp)
+                           .clip(RoundedCornerShape(8.dp))
+                       ,
+                       bitmap = loadImageFromFile(filePath = imagePath[it])!!.asImageBitmap(), contentDescription = null,
+                       contentScale = ContentScale.Crop)
+
+                   Icon(
+                       modifier = Modifier
+                           .offset(y = (-6).dp, x = (-6).dp)
+
+                           .align(Alignment.TopEnd)
+                           .clip(CircleShape)
+                           .background(color = MaterialTheme.colorScheme.errorContainer, shape = CircleShape)
+                           .clickable {
+                                      imagePath = ArrayList(imagePath).apply { remove(imagePath[it]) }
+                           },
+                       painter = painterResource(id = R.drawable.cross_16_2), contentDescription = null, tint = MaterialTheme.colorScheme.error)
+               }
             }
 
             Icon(
@@ -121,10 +138,10 @@ fun ImageItem(
                     }
                     .size(64.dp)
                     .border(
-                    width = 2.dp,
-                    shape = RoundedCornerShape(8.dp),
-                    color = MaterialTheme.colorScheme.primary
-                )
+                        width = 2.dp,
+                        shape = RoundedCornerShape(8.dp),
+                        color = MaterialTheme.colorScheme.primary
+                    )
                     .padding(24.dp)
                 ,
                 painter = painterResource(id = R.drawable.cameraplus_24), contentDescription = null, tint = MaterialTheme.colorScheme.primary)

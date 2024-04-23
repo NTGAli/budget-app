@@ -51,7 +51,9 @@ android {
 
 dependencies {
     implementation(project(":core:designsystem"))
-    implementation("androidx.core:core-ktx:1.12.0")
+    implementation(project(":core:analytics"))
+
+    implementation(libs.androidx.core.ktx)
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")
     implementation(platform("androidx.compose:compose-bom:2023.08.00"))

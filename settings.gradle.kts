@@ -17,3 +17,5 @@ rootProject.name = "budget app"
 include(":app")
 
 include(":core:designsystem")
+
+include(":core:analytics")

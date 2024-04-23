@@ -15,6 +15,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -26,6 +27,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.ntg.analytics.LocalAnalyticsHelper
 import com.ntg.budgetapp.ui.theme.BudgetAppTheme
 import com.ntg.budgetapp.ui.theme.ChunLiBlue100
 import com.ntg.budgetapp.ui.theme.ChunLiBlue200
@@ -44,6 +46,7 @@ import com.ntg.designsystem.components.DetailsTable
 import com.ntg.designsystem.components.ImageItem
 import com.ntg.designsystem.components.MessageBox
 import com.ntg.designsystem.components.SampleItem
+import com.ntg.designsystem.components.Table
 import com.ntg.designsystem.components.TextCheckBox
 import com.ntg.designsystem.components.TextDivider
 import com.ntg.designsystem.components.TextRadio
@@ -53,13 +56,24 @@ import com.ntg.designsystem.components.UserDataTable
 import com.ntg.designsystem.model.DonutChartData
 import com.ntg.designsystem.model.DonutChartDataCollection
 import com.ntg.designsystem.model.NavigationItem
+import com.ntg.designsystem.model.TableData
 import com.ntg.designsystem.model.TextDividerType
 import com.ntg.designsystem.model.UserDataTableItem
 
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var analyticsHelper: AnalyticsHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            CompositionLocalProvider(
+                LocalAnalyticsHelper provides analyticsHelper,
+//                LocalTimeZone provides currentTimeZone,
+            ) {
+
+            }
             BudgetAppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
@@ -78,6 +92,15 @@ class MainActivity : ComponentActivity() {
                         }
                         LazyColumn {
                             item {
+
+                                Table(
+                                    modifier = Modifier.padding(horizontal = 24.dp, vertical = 24.dp),
+                                    items = listOf(TableData(0, painterResource(id = R.drawable.diamond),"Salary", "30%", "20"),
+                                        TableData(0, painterResource(id = R.drawable.diamond),"Salary", "30%", "20"),
+                                        TableData(0, painterResource(id = R.drawable.diamond),"Salary", "30%", "20"),
+                                        TableData(0, painterResource(id = R.drawable.diamond),"Salary", "30%", "20")),
+                                    "Categories","Count"
+                                )
 
                                 ImageItem(modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp))
 
@@ -218,7 +241,7 @@ class MainActivity : ComponentActivity() {
                                     )
                                 )
 
-                                com.ntg.designsystem.components.Card(
+                                Card(
                                     modifier = Modifier.padding(top = 24.dp),
                                     card = ImageVector.vectorResource(R.drawable.card),
                                     cardNumber = "4111111111111111",
@@ -227,7 +250,7 @@ class MainActivity : ComponentActivity() {
                                 )
 
 
-                                val viewData = com.ntg.designsystem.model.DonutChartDataCollection(
+                                val viewData = DonutChartDataCollection(
                                     listOf(
                                         DonutChartData(
                                             1200.0f,
@@ -258,7 +281,7 @@ class MainActivity : ComponentActivity() {
                                 )
 
 
-                                com.ntg.designsystem.components.CircleChart(
+                                CircleChart(
                                     modifier = Modifier.padding(
                                         top = 24.dp
                                     ), data = viewData
@@ -323,7 +346,7 @@ class MainActivity : ComponentActivity() {
 
                                 }
 
-                                com.ntg.designsystem.components.DetailsTable(
+                                DetailsTable(
                                     modifier = Modifier.padding(horizontal = 32.dp),
                                     items = listOf(
                                         Pair("aaa", "aaa"),
@@ -338,15 +361,15 @@ class MainActivity : ComponentActivity() {
                             }
                         }
 
-                        val navs = listOf<com.ntg.designsystem.model.NavigationItem>(
-                            com.ntg.designsystem.model.NavigationItem(
+                        val navs = listOf<NavigationItem>(
+                            NavigationItem(
                                 1,
                                 "test",
                                 painterResource(id = R.drawable.home),
                                 painterResource(id = R.drawable.home),
                                 isSelected = true
                             ),
-                            com.ntg.designsystem.model.NavigationItem(
+                            NavigationItem(
                                 2,
                                 "test",
                                 painterResource(id = R.drawable.user_circle),
@@ -355,7 +378,7 @@ class MainActivity : ComponentActivity() {
                             )
                         )
 
-                        com.ntg.designsystem.components.BottomNavigation(
+                        BottomNavigation(
                             modifier = Modifier.align(Alignment.BottomCenter),
                             items = navs,
                             onCLick = {}

@@ -88,8 +88,6 @@ fun BottomNavigation(
                   .padding(vertical = 16.dp),
               painter = secondItem.painter, contentDescription = secondItem.title
           )
-
       }
   }
-
 }

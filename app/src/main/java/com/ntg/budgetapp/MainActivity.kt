@@ -48,10 +48,12 @@ import com.ntg.designsystem.components.TextDivider
 import com.ntg.designsystem.components.TextRadio
 import com.ntg.designsystem.components.TransactionItem
 import com.ntg.designsystem.components.UserData
+import com.ntg.designsystem.components.UserDataTable
 import com.ntg.designsystem.model.DonutChartData
 import com.ntg.designsystem.model.DonutChartDataCollection
 import com.ntg.designsystem.model.NavigationItem
 import com.ntg.designsystem.model.TextDividerType
+import com.ntg.designsystem.model.UserDataTableItem
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,6 +77,12 @@ class MainActivity : ComponentActivity() {
                         }
                         LazyColumn {
                             item {
+
+                                UserDataTable(
+                                    modifier = Modifier.padding(horizontal = 24.dp),
+                                    items = listOf(UserDataTableItem(0, "Full name", "test"), UserDataTableItem(0, "Full name", "test"), UserDataTableItem(0, "Full name", "test"))){
+
+                                }
 
                                 UserData(email = "test@tt.com", name = "John", state = false)
                                 UserData(email = "test@tt.com", name = "John", state = true)

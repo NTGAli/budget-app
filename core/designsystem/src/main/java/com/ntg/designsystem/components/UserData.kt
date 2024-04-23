@@ -3,6 +3,7 @@ package com.ntg.designsystem.components
 import android.graphics.Paint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -25,14 +26,20 @@ fun UserData(
     image: Painter? = null,
     email: String,
     name: String,
-    state: Boolean
+    state: Boolean,
+    onClick:()-> Unit = {}
 ){
 
     val finalText = if (state) "Pro" else "Free"
     val textColor = if (state) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.error
     val backColor = if (state) MaterialTheme.colorScheme.tertiaryContainer else MaterialTheme.colorScheme.errorContainer
 
-    Row(modifier = modifier.padding(horizontal = 24.dp), verticalAlignment = Alignment.CenterVertically) {
+    Row(modifier = modifier
+        .clickable {
+            onClick.invoke()
+        }
+        .padding(horizontal = 24.dp, vertical = 14.dp)
+        , verticalAlignment = Alignment.CenterVertically) {
         Image(
             modifier = Modifier.clip(RoundedCornerShape(64.dp)).size(64.dp),
             painter = image ?: painterResource(id = R.drawable.user_circle_big), contentDescription = null)
@@ -56,9 +63,8 @@ fun UserData(
 
         Text(
             modifier = Modifier
+                .background(color = backColor, shape = RoundedCornerShape(8.dp))
                 .padding(horizontal = 8.dp, vertical = 4.dp)
-                .clip(RoundedCornerShape(2.dp))
-                .background(color = backColor)
             ,
             text = finalText, style = MaterialTheme.typography.labelMedium.copy(color = textColor))
 

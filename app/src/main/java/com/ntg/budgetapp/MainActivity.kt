@@ -41,6 +41,7 @@ import com.ntg.designsystem.components.Card
 import com.ntg.designsystem.components.Chips
 import com.ntg.designsystem.components.CircleChart
 import com.ntg.designsystem.components.DetailsTable
+import com.ntg.designsystem.components.ImageItem
 import com.ntg.designsystem.components.MessageBox
 import com.ntg.designsystem.components.SampleItem
 import com.ntg.designsystem.components.TextCheckBox
@@ -77,6 +78,8 @@ class MainActivity : ComponentActivity() {
                         }
                         LazyColumn {
                             item {
+
+                                ImageItem(modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp))
 
                                 UserDataTable(
                                     modifier = Modifier.padding(horizontal = 24.dp),

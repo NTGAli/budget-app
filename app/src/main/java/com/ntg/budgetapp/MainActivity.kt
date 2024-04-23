@@ -42,6 +42,7 @@ import com.ntg.designsystem.components.Chips
 import com.ntg.designsystem.components.CircleChart
 import com.ntg.designsystem.components.DetailsTable
 import com.ntg.designsystem.components.MessageBox
+import com.ntg.designsystem.components.SampleItem
 import com.ntg.designsystem.components.TextCheckBox
 import com.ntg.designsystem.components.TextDivider
 import com.ntg.designsystem.components.TextRadio
@@ -74,7 +75,13 @@ class MainActivity : ComponentActivity() {
                         LazyColumn {
                             item {
 
-                                com.ntg.designsystem.components.AmountReport(
+                                
+                                SampleItem(
+                                    icon = painterResource(id = R.drawable.user_circle),
+                                    title = "Account Information"
+                                ){}
+                                
+                                AmountReport(
                                     modifier = Modifier.padding(
                                         horizontal = 32.dp,
                                         vertical = 24.dp
@@ -106,7 +113,7 @@ class MainActivity : ComponentActivity() {
                                 }
 
 
-                                com.ntg.designsystem.components.Button(
+                                Button(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .padding(top = 16.dp),
@@ -117,7 +124,7 @@ class MainActivity : ComponentActivity() {
                                     click = !click
                                 }
 
-                                com.ntg.designsystem.components.Button(
+                                Button(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .padding(top = 16.dp),
@@ -129,7 +136,7 @@ class MainActivity : ComponentActivity() {
                                 }
 
 
-                                com.ntg.designsystem.components.Button(
+                                Button(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .padding(top = 16.dp),
@@ -141,7 +148,7 @@ class MainActivity : ComponentActivity() {
                                 }
 
 
-                                com.ntg.designsystem.components.Button(
+                                Button(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .padding(top = 16.dp),
@@ -153,38 +160,38 @@ class MainActivity : ComponentActivity() {
                                 }
 
 
-                                com.ntg.designsystem.components.MessageBox(
+                                MessageBox(
                                     modifier = Modifier.padding(top = 16.dp),
                                     text = "Image Backup Available Only with Paid Subscription Plans",
                                     type = com.ntg.designsystem.components.ButtonType.Primary
                                 )
 
-                                com.ntg.designsystem.components.MessageBox(
+                                MessageBox(
                                     modifier = Modifier.padding(top = 16.dp),
                                     text = "Image Backup Available Only with Paid Subscription Plans",
                                     type = com.ntg.designsystem.components.ButtonType.Secondary
                                 )
 
-                                com.ntg.designsystem.components.MessageBox(
+                                MessageBox(
                                     modifier = Modifier.padding(top = 16.dp),
                                     text = "Image Backup Available Only with Paid Subscription Plans",
                                     type = com.ntg.designsystem.components.ButtonType.Success
                                 )
 
-                                com.ntg.designsystem.components.MessageBox(
+                                MessageBox(
                                     modifier = Modifier.padding(top = 16.dp),
                                     text = "Image Backup Available Only with Paid Subscription Plans",
                                     type = com.ntg.designsystem.components.ButtonType.Error
                                 )
 
-                                com.ntg.designsystem.components.MessageBox(
+                                MessageBox(
                                     modifier = Modifier.padding(top = 16.dp),
                                     text = "Image Backup Available Only with Paid Subscription Plans",
                                     type = com.ntg.designsystem.components.ButtonType.Primary,
                                     textButton = "button"
                                 )
 
-                                com.ntg.designsystem.components.MessageBox(
+                                MessageBox(
                                     modifier = Modifier.padding(top = 16.dp),
                                     text = "Image Backup Available Only with Paid Subscription Plans",
                                     type = com.ntg.designsystem.components.ButtonType.Primary,
@@ -204,27 +211,27 @@ class MainActivity : ComponentActivity() {
 
                                 val viewData = com.ntg.designsystem.model.DonutChartDataCollection(
                                     listOf(
-                                        com.ntg.designsystem.model.DonutChartData(
+                                        DonutChartData(
                                             1200.0f,
                                             ChunLiBlue500,
                                             title = "Food & Groceries"
                                         ),
-                                        com.ntg.designsystem.model.DonutChartData(
+                                        DonutChartData(
                                             1500.0f,
                                             ChunLiBlue400,
                                             title = "Rent"
                                         ),
-                                        com.ntg.designsystem.model.DonutChartData(
+                                        DonutChartData(
                                             300.0f,
                                             ChunLiBlue300,
                                             title = "Gas"
                                         ),
-                                        com.ntg.designsystem.model.DonutChartData(
+                                        DonutChartData(
                                             700.0f,
                                             ChunLiBlue200,
                                             title = "Online Purchases"
                                         ),
-                                        com.ntg.designsystem.model.DonutChartData(
+                                        DonutChartData(
                                             300.0f,
                                             ChunLiBlue100,
                                             title = "Clothing"

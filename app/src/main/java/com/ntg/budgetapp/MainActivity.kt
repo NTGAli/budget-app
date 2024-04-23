@@ -80,7 +80,9 @@ class MainActivity : ComponentActivity() {
 
                                 UserDataTable(
                                     modifier = Modifier.padding(horizontal = 24.dp),
-                                    items = listOf(UserDataTableItem(0, "Full name", "test"), UserDataTableItem(0, "Full name", "test"), UserDataTableItem(0, "Full name", "test"))){
+                                    items = listOf(UserDataTableItem(0, "Full name", "test"), UserDataTableItem(0, "Full name", "test", icon = painterResource(
+                                        id = R.drawable.mobile
+                                    )), UserDataTableItem(0, "Full name", "test",isChecked = true))){
 
                                 }
 

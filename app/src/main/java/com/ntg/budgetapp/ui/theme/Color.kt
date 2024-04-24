@@ -2,6 +2,13 @@ package com.ntg.budgetapp.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+val Purple80 = Color(0xFFD0BCFF)
+val PurpleGrey80 = Color(0xFFCCC2DC)
+val Pink80 = Color(0xFFEFB8C8)
+
+val Purple40 = Color(0xFF6650a4)
+val PurpleGrey40 = Color(0xFF625b71)
+val Pink40 = Color(0xFF7D5260)
 val ChunLiBlue100 = Color(0xFFE8EEFB)
 val ChunLiBlue200 = Color(0xFFD1DDF8)
 val ChunLiBlue300 = Color(0xFFA3BBF1)
@@ -85,11 +92,11 @@ val SecondaryDark = Color(0xFF8991A4)
 val OnSecondaryDark = Color(0xFF2F3952)
 val SecondaryContainerDark = Color(0xFF626C85)
 val OnSecondaryContainerDark = Color(0xFFD8DAE1)
-val TertiaryDark = Color(0xFF88E0B8)
+val TertiaryDark = Color(0xFFEBFAF3)
 val OnTertiaryDark = Color(0xFF2DA26E)
 val TertiaryContainerDark = Color(0xFF60D5A1)
 val OnTertiaryContainerDark = Color(0xFFD7F5E7)
-val ErrorDark = Color(0xFFFE8B8B)
+val ErrorDark = Color(0xFFFFECEC)
 val OnErrorDark = Color(0xFFCB3232)
 val ErrorContainerDark = Color(0xFFFE6565)
 val OnErrorContainerDark = Color(0xFFFFD8D8)

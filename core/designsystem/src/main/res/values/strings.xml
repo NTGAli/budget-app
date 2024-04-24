@@ -1,0 +1,5 @@
+<resources>
+    <string name="income">Income</string>
+    <string name="outcome">Outcome</string>
+    <string name="add_image">Add Image</string>
+</resources>

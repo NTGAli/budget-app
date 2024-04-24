@@ -27,16 +27,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.ntg.budgetapp.components.CustomOutlineTextField
 import com.ntg.budgetapp.model.countryList
 import com.ntg.budgetapp.nav.ScreenPath
 import com.ntg.budgetapp.ui.theme.Primary
 import com.ntg.budgetapp.ui.theme.Void300
 import com.ntg.budgetapp.ui.theme.Void900
+import com.ntg.designsystem.components.CustomOutlineTextField
 
 
 @Composable
-fun TextFieldScreen(navController: NavHostController, id: Int?) {
+fun TextFieldScreen(id: Int?) {
     val selectedCountry = countryList.find { it.id == id }
     val context = LocalContext.current
     var default by remember { mutableStateOf("Test") }
@@ -85,12 +85,11 @@ fun TextFieldScreen(navController: NavHostController, id: Int?) {
     Log.d("idddddd", "$id")
 
     Box(modifier = Modifier.fillMaxSize()) {
-        LazyColumn(
+        Column(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            item {
                 Text(text = "Default", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
                 CustomOutlineTextField(
@@ -102,8 +101,6 @@ fun TextFieldScreen(navController: NavHostController, id: Int?) {
                     enabled = false,
                     readOnly = true
                 )
-            }
-            item {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "Disabled", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
@@ -115,8 +112,6 @@ fun TextFieldScreen(navController: NavHostController, id: Int?) {
                     label = disabledLabel,
                     enabled = false
                 )
-            }
-            item {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "Focused", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
@@ -127,8 +122,6 @@ fun TextFieldScreen(navController: NavHostController, id: Int?) {
                     },
                     label = focusedLabel,
                 )
-            }
-            item {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "Dropdown", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
@@ -138,12 +131,12 @@ fun TextFieldScreen(navController: NavHostController, id: Int?) {
                         indication = null,
                         interactionSource = remember { MutableInteractionSource() }
                     ) {
-                        navController.navigate(ScreenPath.countryScreen.route)
-                        Toast.makeText(
-                            context,
-                            "Hiiii333",
-                            Toast.LENGTH_SHORT
-                        ).show()
+//                        navController.navigate(ScreenPath.countryScreen.route)
+//                        Toast.makeText(
+//                            context,
+//                            "Hiiii333",
+//                            Toast.LENGTH_SHORT
+//                        ).show()
                     },
                     value = if (selectedCountry?.name?.isEmpty() == true) dropdown else selectedCountry?.name
                         ?: "",
@@ -186,8 +179,6 @@ fun TextFieldScreen(navController: NavHostController, id: Int?) {
                     },
                     placeholder = "Select"
                 )
-            }
-            item {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "Unit", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
@@ -199,8 +190,6 @@ fun TextFieldScreen(navController: NavHostController, id: Int?) {
                     label = unitLabel,
                     trailingIcon = { Text(text = "lbs", color = Void300) }
                 )
-            }
-            item {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "Success", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
@@ -213,8 +202,6 @@ fun TextFieldScreen(navController: NavHostController, id: Int?) {
                     },
                     label = successLabel,
                 )
-            }
-            item {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "SuccessLine", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
@@ -227,8 +214,6 @@ fun TextFieldScreen(navController: NavHostController, id: Int?) {
                     },
                     label = successLineLabel,
                 )
-            }
-            item {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "SuccessHelpText", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
@@ -243,8 +228,6 @@ fun TextFieldScreen(navController: NavHostController, id: Int?) {
                     },
                     label = successHelpTextLabel,
                 )
-            }
-            item {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "Error", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
@@ -257,8 +240,6 @@ fun TextFieldScreen(navController: NavHostController, id: Int?) {
                     },
                     label = errorLabel,
                 )
-            }
-            item {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "ErrorLine", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
@@ -271,8 +252,6 @@ fun TextFieldScreen(navController: NavHostController, id: Int?) {
                     },
                     label = errorLineLabel,
                 )
-            }
-            item {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "ErrorHelpText", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
@@ -287,8 +266,6 @@ fun TextFieldScreen(navController: NavHostController, id: Int?) {
                     },
                     label = errorHelpTextLabel,
                 )
-            }
-            item {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "Warning", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
@@ -301,8 +278,6 @@ fun TextFieldScreen(navController: NavHostController, id: Int?) {
                     },
                     label = warningLabel,
                 )
-            }
-            item {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "WarningLine", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
@@ -315,8 +290,6 @@ fun TextFieldScreen(navController: NavHostController, id: Int?) {
                     },
                     label = warningLineLabel,
                 )
-            }
-            item {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "WarningHelpText", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
@@ -332,6 +305,5 @@ fun TextFieldScreen(navController: NavHostController, id: Int?) {
                     label = warningHelpTextLabel,
                 )
             }
-        }
     }
 }

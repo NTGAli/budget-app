@@ -29,7 +29,7 @@ fun SetupNavGraph(
             )
         ) {
             val id=it.arguments?.getInt("id")
-            TextFieldScreen(navController,id)
+            TextFieldScreen(id)
         }
         composable(
             route = ScreenPath.countryScreen.route,

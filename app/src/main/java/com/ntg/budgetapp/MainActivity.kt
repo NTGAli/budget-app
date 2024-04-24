@@ -62,18 +62,18 @@ import com.ntg.designsystem.model.UserDataTableItem
 
 class MainActivity : ComponentActivity() {
 
-    @Inject
-    lateinit var analyticsHelper: AnalyticsHelper
+//    @Inject
+//    lateinit var analyticsHelper: AnalyticsHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            CompositionLocalProvider(
-                LocalAnalyticsHelper provides analyticsHelper,
-//                LocalTimeZone provides currentTimeZone,
-            ) {
-
-            }
+//            CompositionLocalProvider(
+//                LocalAnalyticsHelper provides analyticsHelper,
+////                LocalTimeZone provides currentTimeZone,
+//            ) {
+//
+//            }
             BudgetAppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
@@ -92,6 +92,8 @@ class MainActivity : ComponentActivity() {
                         }
                         LazyColumn {
                             item {
+
+                                TextFieldScreen(1)
 
                                 Table(
                                     modifier = Modifier.padding(horizontal = 24.dp, vertical = 24.dp),

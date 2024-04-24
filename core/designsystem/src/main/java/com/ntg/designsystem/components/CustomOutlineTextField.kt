@@ -1,4 +1,4 @@
-package com.ntg.budgetapp.components
+package com.ntg.designsystem.components
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -8,6 +8,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -21,21 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import com.ntg.budgetapp.R
-import com.ntg.budgetapp.ui.theme.ChunLiBlue500
-import com.ntg.budgetapp.ui.theme.ChunLiBlue600
-import com.ntg.budgetapp.ui.theme.ChunLiBlue700
-import com.ntg.budgetapp.ui.theme.CoralRed600
-import com.ntg.budgetapp.ui.theme.GreenishTeal600
-import com.ntg.budgetapp.ui.theme.Primary
-import com.ntg.budgetapp.ui.theme.Typography
-import com.ntg.budgetapp.ui.theme.Void100
-import com.ntg.budgetapp.ui.theme.Void200
-import com.ntg.budgetapp.ui.theme.Void300
-import com.ntg.budgetapp.ui.theme.Void400
-import com.ntg.budgetapp.ui.theme.Void500
-import com.ntg.budgetapp.ui.theme.Void600
-import com.ntg.budgetapp.ui.theme.Void900
+import com.ntg.designsystem.R
 
 @Composable
 fun CustomOutlineTextField(
@@ -79,11 +66,11 @@ fun CustomOutlineTextField(
             modifier = modifier,
             enabled = enabled,
             readOnly = readOnly,
-            textStyle = Typography.labelLarge,
+            textStyle = MaterialTheme.typography.labelLarge,
             label = {
                 Text(
                     text = label.orEmpty(),
-                    style = Typography.labelSmall.copy(
+                    style = MaterialTheme.typography.labelSmall.copy(
                         fontWeight = FontWeight.SemiBold,
                     )
                 )
@@ -91,7 +78,7 @@ fun CustomOutlineTextField(
             placeholder = {
                 Text(
                     text = placeholder.orEmpty(),
-                    style = Typography.labelSmall
+                    style = MaterialTheme.typography.labelSmall
                 )
             },
             leadingIcon = leadingIcon,
@@ -101,7 +88,7 @@ fun CustomOutlineTextField(
                         Icon(
                             painter = painterResource(id = R.drawable.ic_remove_circle),
                             contentDescription = "remove_circle",
-                            tint = CoralRed600
+                            tint = MaterialTheme.colorScheme.error
                         )
                     }
 
@@ -109,7 +96,7 @@ fun CustomOutlineTextField(
                         Icon(
                             painter = painterResource(id = R.drawable.ic_check_circle),
                             contentDescription = "check_circle",
-                            tint = GreenishTeal600
+                            tint = MaterialTheme.colorScheme.tertiary
                         )
                     }
 
@@ -142,8 +129,8 @@ fun CustomOutlineTextField(
                         isError && !errorText.isNullOrEmpty() -> {
                             Text(
                                 text = errorText,
-                                color = CoralRed600,
-                                style = Typography.labelSmall.copy(
+                                color = MaterialTheme.colorScheme.error,
+                                style = MaterialTheme.typography.labelSmall.copy(
                                     fontWeight = FontWeight.SemiBold,
                                 )
                             )
@@ -152,8 +139,8 @@ fun CustomOutlineTextField(
                         isOk && !okText.isNullOrEmpty() -> {
                             Text(
                                 text = okText,
-                                color = GreenishTeal600,
-                                style = Typography.labelSmall.copy(
+                                color = MaterialTheme.colorScheme.tertiary,
+                                style = MaterialTheme.typography.labelSmall.copy(
                                     fontWeight = FontWeight.SemiBold,
                                 )
                             )
@@ -163,7 +150,7 @@ fun CustomOutlineTextField(
                             Text(
                                 text = warningText,
                                 color = Color.Yellow,
-                                style = Typography.labelSmall.copy(
+                                style = MaterialTheme.typography.labelSmall.copy(
                                     fontWeight = FontWeight.SemiBold,
                                 )
                             )
@@ -181,11 +168,11 @@ fun CustomOutlineTextField(
             interactionSource = interactionSource,
             shape = RoundedCornerShape(16.dp),
             colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = if (readOnly) Void500 else ChunLiBlue500,
-                unfocusedBorderColor = Void500,
+                focusedBorderColor = if (readOnly) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.primary,
+                unfocusedBorderColor = MaterialTheme.colorScheme.secondary,
                 disabledBorderColor = when {
                     isOk -> {
-                        GreenishTeal600
+                        MaterialTheme.colorScheme.tertiary
                     }
 
                     isWarning -> {
@@ -193,47 +180,47 @@ fun CustomOutlineTextField(
                     }
 
                     isError -> {
-                        CoralRed600
+                        MaterialTheme.colorScheme.error
                     }
 
                     readOnly -> {
-                        Void500
+                        MaterialTheme.colorScheme.secondary
                     }
 
                     else -> {
-                        Void200
+                        MaterialTheme.colorScheme.secondary
                     }
                 },
-                errorBorderColor = if (readOnly) Void500 else CoralRed600,
-                focusedLabelColor = Void500,
-                unfocusedLabelColor = Void400,
-                disabledLabelColor = Void500,
-                errorLabelColor = Void500,
-                focusedPlaceholderColor = Void300,
-                unfocusedPlaceholderColor = Void300,
-                disabledPlaceholderColor = Void300,
-                errorPlaceholderColor = Void300,
-                focusedTrailingIconColor = Void500,
-                unfocusedTrailingIconColor = Void500,
-                disabledTrailingIconColor = Void500,
-                errorTrailingIconColor = Void500,
-                cursorColor = ChunLiBlue500,
-                focusedTextColor = Void900,
-                unfocusedTextColor = Void900,
+                errorBorderColor = if (readOnly) MaterialTheme.colorScheme.outline else MaterialTheme.colorScheme.error,
+                focusedLabelColor = MaterialTheme.colorScheme.secondary,
+                unfocusedLabelColor = MaterialTheme.colorScheme.secondary,
+                disabledLabelColor = MaterialTheme.colorScheme.secondary,
+                errorLabelColor = MaterialTheme.colorScheme.secondary,
+                focusedPlaceholderColor = MaterialTheme.colorScheme.secondary,
+                unfocusedPlaceholderColor = MaterialTheme.colorScheme.secondary,
+                disabledPlaceholderColor = MaterialTheme.colorScheme.secondary,
+                errorPlaceholderColor = MaterialTheme.colorScheme.secondary,
+                focusedTrailingIconColor = MaterialTheme.colorScheme.secondary,
+                unfocusedTrailingIconColor = MaterialTheme.colorScheme.secondary,
+                disabledTrailingIconColor = MaterialTheme.colorScheme.secondary,
+                errorTrailingIconColor = MaterialTheme.colorScheme.secondary,
+                cursorColor = MaterialTheme.colorScheme.primary,
+                focusedTextColor = MaterialTheme.colorScheme.secondary,
+                unfocusedTextColor = MaterialTheme.colorScheme.secondary,
                 disabledTextColor = when {
                     isCountryShowing -> {
-                        Void900
+                        MaterialTheme.colorScheme.secondary
                     }
 
                     readOnly -> {
-                        Void500
+                        MaterialTheme.colorScheme.secondary
                     }
 
                     else -> {
-                        Void200
+                        MaterialTheme.colorScheme.secondary
                     }
                 },
-                errorTextColor = Void900,
+                errorTextColor = MaterialTheme.colorScheme.secondary,
             )
         )
     }

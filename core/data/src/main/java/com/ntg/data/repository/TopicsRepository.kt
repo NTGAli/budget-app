@@ -16,7 +16,7 @@
 
 package com.google.samples.apps.nowinandroid.core.data.repository
 
-import com.google.samples.apps.nowinandroid.core.data.Syncable
+import com.ntg.data.Syncable
 import com.google.samples.apps.nowinandroid.core.model.data.Topic
 import kotlinx.coroutines.flow.Flow
 

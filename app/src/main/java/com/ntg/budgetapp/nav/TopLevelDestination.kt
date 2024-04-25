@@ -14,14 +14,12 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.navigation
+package com.ntg.budgetapp.nav
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Add
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.google.samples.apps.nowinandroid.R
-import com.google.samples.apps.nowinandroid.core.designsystem.icon.NiaIcons
-import com.google.samples.apps.nowinandroid.feature.bookmarks.R as bookmarksR
-import com.google.samples.apps.nowinandroid.feature.foryou.R as forYouR
-import com.google.samples.apps.nowinandroid.feature.search.R as searchR
 
 /**
  * Type for the top level destinations in the application. Each of these destinations
@@ -34,22 +32,22 @@ enum class TopLevelDestination(
     val iconTextId: Int,
     val titleTextId: Int,
 ) {
-    FOR_YOU(
-        selectedIcon = NiaIcons.Upcoming,
-        unselectedIcon = NiaIcons.UpcomingBorder,
-        iconTextId = forYouR.string.feature_foryou_title,
+    HOME(
+        selectedIcon = Icons.Rounded.Add,
+        unselectedIcon = Icons.Rounded.Add,
+        iconTextId = R.string.app_name,
         titleTextId = R.string.app_name,
     ),
-    BOOKMARKS(
-        selectedIcon = NiaIcons.Bookmarks,
-        unselectedIcon = NiaIcons.BookmarksBorder,
-        iconTextId = bookmarksR.string.feature_bookmarks_title,
-        titleTextId = bookmarksR.string.feature_bookmarks_title,
-    ),
-    INTERESTS(
-        selectedIcon = NiaIcons.Grid3x3,
-        unselectedIcon = NiaIcons.Grid3x3,
-        iconTextId = searchR.string.feature_search_interests,
-        titleTextId = searchR.string.feature_search_interests,
-    ),
+//    BOOKMARKS(
+//        selectedIcon = NiaIcons.Bookmarks,
+//        unselectedIcon = NiaIcons.BookmarksBorder,
+//        iconTextId = bookmarksR.string.feature_bookmarks_title,
+//        titleTextId = bookmarksR.string.feature_bookmarks_title,
+//    ),
+//    INTERESTS(
+//        selectedIcon = NiaIcons.Grid3x3,
+//        unselectedIcon = NiaIcons.Grid3x3,
+//        iconTextId = searchR.string.feature_search_interests,
+//        titleTextId = searchR.string.feature_search_interests,
+//    ),
 }

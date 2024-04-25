@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.feature.foryou.navigation
+package com.ntg.home.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder

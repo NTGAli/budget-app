@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.core.data.di
+package com.ntg.data.di
 
-import com.google.samples.apps.nowinandroid.core.data.repository.DefaultRecentSearchRepository
+import com.ntg.data.repository.DefaultRecentSearchRepository
 import com.google.samples.apps.nowinandroid.core.data.repository.DefaultSearchContentsRepository
 import com.google.samples.apps.nowinandroid.core.data.repository.NewsRepository
 import com.google.samples.apps.nowinandroid.core.data.repository.OfflineFirstNewsRepository
@@ -26,10 +26,10 @@ import com.google.samples.apps.nowinandroid.core.data.repository.RecentSearchRep
 import com.google.samples.apps.nowinandroid.core.data.repository.SearchContentsRepository
 import com.google.samples.apps.nowinandroid.core.data.repository.TopicsRepository
 import com.google.samples.apps.nowinandroid.core.data.repository.UserDataRepository
-import com.google.samples.apps.nowinandroid.core.data.util.ConnectivityManagerNetworkMonitor
-import com.google.samples.apps.nowinandroid.core.data.util.NetworkMonitor
-import com.google.samples.apps.nowinandroid.core.data.util.TimeZoneBroadcastMonitor
-import com.google.samples.apps.nowinandroid.core.data.util.TimeZoneMonitor
+import com.ntg.data.util.ConnectivityManagerNetworkMonitor
+import com.ntg.data.util.NetworkMonitor
+import com.ntg.data.util.TimeZoneBroadcastMonitor
+import com.ntg.data.util.TimeZoneMonitor
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -37,7 +36,7 @@ fun CountrySelectScreen(navController: NavHostController) {
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Image(painter = painterResource(id = it.flag), contentDescription = it.name)
-                    Text(text = it.name)
+//                    Text(text = it.name)
                 }
                 Spacer(modifier = Modifier.height(8.dp))
             }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.core.data.model
+package com.ntg.data.model
 
 import com.google.samples.apps.nowinandroid.core.database.model.RecentSearchQueryEntity
 import kotlinx.datetime.Clock

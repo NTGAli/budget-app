@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ntg.convention.google.samples.apps.nowinandroid
+package com.google.samples.apps.nowinandroid
 
 import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.Project
@@ -34,7 +34,7 @@ internal fun Project.configureAndroidCompose(
         }
 
         composeOptions {
-            kotlinCompilerExtensionVersion = libs.findVersion("androidxComposeCompiler").get().toString()
+            kotlinCompilerExtensionVersion = "1.5.8"
         }
 
         dependencies {

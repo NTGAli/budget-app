@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.core.model.data
+package com.ntg.model.data
 
-import kotlinx.datetime.Instant
+import java.time.Instant
+
 
 /**
  * External data layer representation of a fully populated NiA news resource

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.core.model.data
+package com.ntg.model.data
 
 enum class ThemeBrand {
     DEFAULT,

@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.core.model.data
+package com.ntg.model.data
 
-import kotlinx.datetime.Instant
+import java.time.Instant
+
 
 /**
  * A [NewsResource] with additional user information such as whether the user is following the

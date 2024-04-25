@@ -20,6 +20,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.google.samples.apps.nowinandroid.R
+import com.ntg.budgetapp.R
 
 /**
  * Type for the top level destinations in the application. Each of these destinations

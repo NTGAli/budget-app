@@ -14,10 +14,13 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.core.data.repository
+package com.ntg.data.repository
 
-import com.google.samples.apps.nowinandroid.core.model.data.UserNewsResource
-import com.google.samples.apps.nowinandroid.core.model.data.mapToUserNewsResources
+import com.google.samples.apps.nowinandroid.core.data.repository.NewsRepository
+import com.google.samples.apps.nowinandroid.core.data.repository.NewsResourceQuery
+import com.google.samples.apps.nowinandroid.core.data.repository.UserDataRepository
+import com.ntg.model.data.UserNewsResource
+import com.ntg.model.data.mapToUserNewsResources
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged

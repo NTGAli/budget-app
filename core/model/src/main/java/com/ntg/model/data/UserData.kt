@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.core.model.data
+package com.ntg.model.data
+
+import com.ntg.model.data.DarkThemeConfig
+import com.ntg.model.data.ThemeBrand
 
 /**
  * Class summarizing user interest data

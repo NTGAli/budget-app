@@ -16,7 +16,7 @@
 
 package com.google.samples.apps.nowinandroid.core.data.repository
 
-import com.google.samples.apps.nowinandroid.core.data.model.RecentSearchQuery
+import com.ntg.database.model.TransactionEntity
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -27,12 +27,12 @@ interface RecentSearchRepository {
     /**
      * Get the recent search queries up to the number of queries specified as [limit].
      */
-    fun getRecentSearchQueries(limit: Int): Flow<List<RecentSearchQuery>>
+    fun getRecentSearchQueries(limit: Int): Flow<List<TransactionEntity>>
 
     /**
      * Insert or replace the [searchQuery] as part of the recent searches.
      */
-    suspend fun insertOrReplaceRecentSearch(searchQuery: String)
+    suspend fun insertOrReplaceRecentSearch(amount: String, type: String)
 
     /**
      * Clear the recent searches.

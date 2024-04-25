@@ -27,6 +27,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.google.samples.apps.nowinandroid.R
 import com.ntg.analytics.LocalAnalyticsHelper
 import com.ntg.budgetapp.ui.theme.BudgetAppTheme
 import com.ntg.budgetapp.ui.theme.ChunLiBlue100
@@ -74,6 +75,15 @@ class MainActivity : ComponentActivity() {
 //            ) {
 //
 //            }
+
+
+//            val appState = rememberNiaAppState(
+//                windowSizeClass = calculateWindowSizeClass(this),
+//                networkMonitor = networkMonitor,
+//                userNewsResourceRepository = userNewsResourceRepository,
+//                timeZoneMonitor = timeZoneMonitor,
+//            )
+
             BudgetAppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(

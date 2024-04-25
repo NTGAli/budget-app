@@ -27,6 +27,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.google.samples.apps.nowinandroid.R
 import com.ntg.budgetapp.model.countryList
 import com.ntg.budgetapp.nav.ScreenPath
 import com.ntg.budgetapp.ui.theme.Primary

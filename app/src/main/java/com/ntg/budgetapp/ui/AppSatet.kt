@@ -29,8 +29,8 @@ import kotlinx.coroutines.flow.stateIn
 @Composable
 fun rememberNiaAppState(
     windowSizeClass: WindowSizeClass,
-    networkMonitor: NetworkMonitor,
-    userNewsResourceRepository: UserNewsResourceRepository,
+//    networkMonitor: NetworkMonitor,
+//    userNewsResourceRepository: UserNewsResourceRepository,
 //    timeZoneMonitor: TimeZoneMonitor,
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     navController: NavHostController = rememberNavController(),
@@ -40,16 +40,16 @@ fun rememberNiaAppState(
         navController,
         coroutineScope,
         windowSizeClass,
-        networkMonitor,
-        userNewsResourceRepository,
+//        networkMonitor,
+//        userNewsResourceRepository,
 //        timeZoneMonitor,
     ) {
         NiaAppState(
             navController = navController,
             coroutineScope = coroutineScope,
             windowSizeClass = windowSizeClass,
-            networkMonitor = networkMonitor,
-            userNewsResourceRepository = userNewsResourceRepository,
+//            networkMonitor = networkMonitor,
+//            userNewsResourceRepository = userNewsResourceRepository,
 //            timeZoneMonitor = timeZoneMonitor,
         )
     }
@@ -60,8 +60,8 @@ class NiaAppState(
     val navController: NavHostController,
     coroutineScope: CoroutineScope,
     val windowSizeClass: WindowSizeClass,
-    networkMonitor: NetworkMonitor,
-    userNewsResourceRepository: UserNewsResourceRepository,
+//    networkMonitor: NetworkMonitor,
+//    userNewsResourceRepository: UserNewsResourceRepository,
 //    timeZoneMonitor: TimeZoneMonitor,
 ) {
     val currentDestination: NavDestination?
@@ -80,13 +80,13 @@ class NiaAppState(
     val shouldShowNavRail: Boolean
         get() = !shouldShowBottomBar
 
-    val isOffline = networkMonitor.isOnline
-        .map(Boolean::not)
-        .stateIn(
-            scope = coroutineScope,
-            started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = false,
-        )
+//    val isOffline = networkMonitor.isOnline
+//        .map(Boolean::not)
+//        .stateIn(
+//            scope = coroutineScope,
+//            started = SharingStarted.WhileSubscribed(5_000),
+//            initialValue = false,
+//        )
 
     /**
      * Map of top level destinations to be used in the TopBar, BottomBar and NavRail. The key is the
@@ -97,19 +97,19 @@ class NiaAppState(
     /**
      * The top level destinations that have unread news resources.
      */
-    val topLevelDestinationsWithUnreadResources: StateFlow<Set<TopLevelDestination>> =
-        userNewsResourceRepository.observeAllForFollowedTopics()
-            .combine(userNewsResourceRepository.observeAllBookmarked()) { forYouNewsResources, bookmarkedNewsResources ->
-                setOfNotNull(
-                    TopLevelDestination.HOME.takeIf { forYouNewsResources.any { !it.hasBeenViewed } },
-//                    BOOKMARKS.takeIf { bookmarkedNewsResources.any { !it.hasBeenViewed } },
-                )
-            }
-            .stateIn(
-                coroutineScope,
-                SharingStarted.WhileSubscribed(5_000),
-                initialValue = emptySet(),
-            )
+//    val topLevelDestinationsWithUnreadResources: StateFlow<Set<TopLevelDestination>> =
+//        userNewsResourceRepository.observeAllForFollowedTopics()
+//            .combine(userNewsResourceRepository.observeAllBookmarked()) { forYouNewsResources, bookmarkedNewsResources ->
+//                setOfNotNull(
+//                    TopLevelDestination.HOME.takeIf { forYouNewsResources.any { !it.hasBeenViewed } },
+////                    BOOKMARKS.takeIf { bookmarkedNewsResources.any { !it.hasBeenViewed } },
+//                )
+//            }
+//            .stateIn(
+//                coroutineScope,
+//                SharingStarted.WhileSubscribed(5_000),
+//                initialValue = emptySet(),
+//            )
 
 //    val currentTimeZone = timeZoneMonitor.currentTimeZone
 //        .stateIn(

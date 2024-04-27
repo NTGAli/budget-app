@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import com.google.samples.apps.nowinandroid.core.analytics.LocalAnalyticsHelper
 import com.google.samples.apps.nowinandroid.core.designsystem.theme.NiaTheme
 import com.google.samples.apps.nowinandroid.core.model.data.UserNewsResource
+import com.ntg.ui.UserNewsResourcePreviewParameterProvider
 
 /**
  * An extension on [LazyListScope] defining a feed with news resources.

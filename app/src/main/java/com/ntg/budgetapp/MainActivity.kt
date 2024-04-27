@@ -1,10 +1,14 @@
 package com.ntg.budgetapp
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -16,8 +20,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -33,12 +39,17 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.ntg.analytics.AnalyticsHelper
+import com.ntg.analytics.LocalAnalyticsHelper
+import com.ntg.budgetapp.ui.rememberNiaAppState
 import com.ntg.budgetapp.ui.theme.BudgetAppTheme
 import com.ntg.budgetapp.ui.theme.ChunLiBlue100
 import com.ntg.budgetapp.ui.theme.ChunLiBlue200
 import com.ntg.budgetapp.ui.theme.ChunLiBlue300
 import com.ntg.budgetapp.ui.theme.ChunLiBlue400
 import com.ntg.budgetapp.ui.theme.ChunLiBlue500
+import com.ntg.data.repository.UserNewsResourceRepository
+import com.ntg.data.util.NetworkMonitor
 import com.ntg.designsystem.components.AmountReport
 import com.ntg.designsystem.components.BottomNavigation
 import com.ntg.designsystem.components.Button
@@ -64,14 +75,19 @@ import com.ntg.designsystem.model.NavigationItem
 import com.ntg.designsystem.model.TableData
 import com.ntg.designsystem.model.TextDividerType
 import com.ntg.designsystem.model.UserDataTableItem
+import com.ntg.model.data.DarkThemeConfig
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.collect
+import javax.inject.Inject
 
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var analyticsHelper: AnalyticsHelper
 
     val viewModel: MainActivityViewModel by viewModels()
 
@@ -102,21 +118,42 @@ class MainActivity : ComponentActivity() {
         }
 
 
+        enableEdgeToEdge()
+
+
         setContent {
-//            CompositionLocalProvider(
-//                LocalAnalyticsHelper provides analyticsHelper,
-////                LocalTimeZone provides currentTimeZone,
-//            ) {
-//
-//            }
+            val darkTheme = shouldUseDarkTheme(uiState)
 
+            DisposableEffect(darkTheme) {
+                enableEdgeToEdge(
+                    statusBarStyle = SystemBarStyle.auto(
+                        Color.TRANSPARENT,
+                        Color.TRANSPARENT,
+                    ) { darkTheme },
+                    navigationBarStyle = SystemBarStyle.auto(
+                        lightScrim,
+                        darkScrim,
+                    ) { darkTheme },
+                )
+                onDispose {}
+            }
 
-//            val appState = rememberNiaAppState(
-//                windowSizeClass = calculateWindowSizeClass(this),
+            val appState = rememberNiaAppState(
+                windowSizeClass = calculateWindowSizeClass(this),
 //                networkMonitor = networkMonitor,
 //                userNewsResourceRepository = userNewsResourceRepository,
 //                timeZoneMonitor = timeZoneMonitor,
-//            )
+            )
+
+            CompositionLocalProvider(
+                LocalAnalyticsHelper provides analyticsHelper,
+            ){
+
+                BudgetAppTheme {
+
+                }
+
+            }
 
             BudgetAppTheme {
                 // A surface container using the 'background' color from the theme
@@ -484,6 +521,21 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+
+@Composable
+private fun shouldUseDarkTheme(
+    uiState: MainActivityUiState,
+): Boolean = when (uiState) {
+    MainActivityUiState.Loading -> isSystemInDarkTheme()
+    is MainActivityUiState.Success -> when (uiState.userData.darkThemeConfig) {
+        DarkThemeConfig.FOLLOW_SYSTEM -> isSystemInDarkTheme()
+        DarkThemeConfig.LIGHT -> false
+        DarkThemeConfig.DARK -> true
+    }
+}
+
+
+
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
@@ -499,3 +551,15 @@ fun GreetingPreview() {
         Greeting("Android")
     }
 }
+
+/**
+ * The default light scrim, as defined by androidx and the platform:
+ * https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:activity/activity/src/main/java/androidx/activity/EdgeToEdge.kt;l=35-38;drc=27e7d52e8604a080133e8b842db10c89b4482598
+ */
+private val lightScrim = android.graphics.Color.argb(0xe6, 0xFF, 0xFF, 0xFF)
+
+/**
+ * The default dark scrim, as defined by androidx and the platform:
+ * https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:activity/activity/src/main/java/androidx/activity/EdgeToEdge.kt;l=40-44;drc=27e7d52e8604a080133e8b842db10c89b4482598
+ */
+private val darkScrim = android.graphics.Color.argb(0x80, 0x1b, 0x1b, 0x1b)

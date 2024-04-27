@@ -2,6 +2,7 @@
 package com.ntg.data_test
 
 import com.ntg.data.di.DataModule
+import com.ntg.data.repository.NewsRepository
 import com.ntg.data.repository.UserDataRepository
 import com.ntg.data_test.repository.FakeUserDataRepository
 import dagger.Binds
@@ -19,4 +20,6 @@ internal interface TestDataModule {
     fun bindsUserDataRepository(
         userDataRepository: FakeUserDataRepository,
     ): UserDataRepository
+
+
 }

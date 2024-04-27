@@ -28,3 +28,7 @@ include(":core:datastore")
 include(":core:datastore-proto")
 include(":core:ui")
 include(":core:common")
+include(":core:data-test")
+include(":lint")
+
+include(":core:datastore-test")

@@ -21,7 +21,7 @@ dependencies {
     api(project(":core:datastore-proto"))
     api(project(":core:model"))
 //
-//    implementation(projects.core.common)
+    implementation(project(":core:common"))
 //
 //    testImplementation(projects.core.datastoreTest)
     testImplementation(libs.kotlinx.coroutines.test)

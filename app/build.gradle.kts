@@ -1,18 +1,3 @@
-/*
- * Copyright 2022 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 import com.google.samples.apps.nowinandroid.NiaBuildType
 
 plugins {
@@ -29,7 +14,7 @@ plugins {
 
 android {
     defaultConfig {
-        applicationId = "com.google.samples.apps.nowinandroid"
+        applicationId = "com.ntg.budgetapp"
         versionCode = 8
         versionName = "0.1.2" // X.Y.Z; X = Major, Y = minor, Z = Patch level
 
@@ -63,11 +48,6 @@ android {
             excludes.add("/META-INF/{AL2.0,LGPL2.1}")
         }
     }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
-    }
-
     testOptions {
         unitTests {
             isIncludeAndroidResources = true
@@ -77,16 +57,15 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:designsystem"))
-    implementation(project(":core:analytics"))
-    implementation(project(":core:model"))
-    implementation(project(":core:data"))
-
     implementation(project(":features:home"))
 
+    implementation(project(":core:common"))
+    implementation(project(":core:designsystem"))
+    implementation(project(":core:data"))
+    implementation(project(":core:model"))
+    implementation(project(":core:analytics"))
+
     implementation(libs.androidx.activity.compose)
-    implementation("androidx.compose.material3:material3")
-    
     implementation(libs.androidx.compose.material3.adaptive)
     implementation(libs.androidx.compose.material3.adaptive.layout)
     implementation(libs.androidx.compose.material3.adaptive.navigation)
@@ -109,6 +88,7 @@ dependencies {
 
     kspTest(libs.hilt.compiler)
 
+    testImplementation(project(":core:data-test"))
     testImplementation(libs.androidx.compose.ui.test)
     testImplementation(libs.hilt.android.testing)
     testImplementation(libs.work.testing)
@@ -116,10 +96,14 @@ dependencies {
     testDemoImplementation(libs.robolectric)
     testDemoImplementation(libs.roborazzi)
 
+    androidTestImplementation(project(":core:data-test"))
     androidTestImplementation(libs.androidx.test.espresso.core)
     androidTestImplementation(libs.androidx.navigation.testing)
     androidTestImplementation(libs.androidx.compose.ui.test)
     androidTestImplementation(libs.hilt.android.testing)
+
+    implementation("androidx.compose.material3:material3")
+
 
 }
 

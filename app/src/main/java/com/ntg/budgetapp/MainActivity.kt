@@ -3,6 +3,7 @@ package com.ntg.budgetapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,6 +15,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
@@ -27,6 +29,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.ntg.budgetapp.ui.theme.BudgetAppTheme
 import com.ntg.budgetapp.ui.theme.ChunLiBlue100
 import com.ntg.budgetapp.ui.theme.ChunLiBlue200
@@ -58,14 +64,44 @@ import com.ntg.designsystem.model.NavigationItem
 import com.ntg.designsystem.model.TableData
 import com.ntg.designsystem.model.TextDividerType
 import com.ntg.designsystem.model.UserDataTableItem
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.collect
 
+@OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    val viewModel: MainActivityViewModel by viewModels()
+
 
 //    @Inject
 //    lateinit var analyticsHelper: AnalyticsHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
+
+        var uiState: MainActivityUiState by mutableStateOf(MainActivityUiState.Loading)
+
+        // Update the uiState
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState
+                    .onEach { uiState = it }
+                    .collect()
+            }
+        }
+
+        splashScreen.setKeepOnScreenCondition {
+            when (uiState) {
+                MainActivityUiState.Loading -> true
+                is MainActivityUiState.Success -> false
+            }
+        }
+
+
         setContent {
 //            CompositionLocalProvider(
 //                LocalAnalyticsHelper provides analyticsHelper,
@@ -104,34 +140,80 @@ class MainActivity : ComponentActivity() {
                                 TextFieldScreen(1)
 
                                 Table(
-                                    modifier = Modifier.padding(horizontal = 24.dp, vertical = 24.dp),
-                                    items = listOf(TableData(0, painterResource(id = R.drawable.diamond),"Salary", "30%", "20"),
-                                        TableData(0, painterResource(id = R.drawable.diamond),"Salary", "30%", "20"),
-                                        TableData(0, painterResource(id = R.drawable.diamond),"Salary", "30%", "20"),
-                                        TableData(0, painterResource(id = R.drawable.diamond),"Salary", "30%", "20")),
-                                    "Categories","Count"
+                                    modifier = Modifier.padding(
+                                        horizontal = 24.dp,
+                                        vertical = 24.dp
+                                    ),
+                                    items = listOf(
+                                        TableData(
+                                            0,
+                                            painterResource(id = R.drawable.diamond),
+                                            "Salary",
+                                            "30%",
+                                            "20"
+                                        ),
+                                        TableData(
+                                            0,
+                                            painterResource(id = R.drawable.diamond),
+                                            "Salary",
+                                            "30%",
+                                            "20"
+                                        ),
+                                        TableData(
+                                            0,
+                                            painterResource(id = R.drawable.diamond),
+                                            "Salary",
+                                            "30%",
+                                            "20"
+                                        ),
+                                        TableData(
+                                            0,
+                                            painterResource(id = R.drawable.diamond),
+                                            "Salary",
+                                            "30%",
+                                            "20"
+                                        )
+                                    ),
+                                    "Categories", "Count"
                                 )
 
-                                ImageItem(modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp))
+                                ImageItem(
+                                    modifier = Modifier.padding(
+                                        horizontal = 24.dp,
+                                        vertical = 16.dp
+                                    )
+                                )
 
                                 UserDataTable(
                                     modifier = Modifier.padding(horizontal = 24.dp),
-                                    items = listOf(UserDataTableItem(0, "Full name", "test"), UserDataTableItem(0, "Full name", "test", icon = painterResource(
-                                        id = R.drawable.mobile
-                                    )), UserDataTableItem(0, "Full name", "test",isChecked = true))){
+                                    items = listOf(
+                                        UserDataTableItem(0, "Full name", "test"),
+                                        UserDataTableItem(
+                                            0, "Full name", "test", icon = painterResource(
+                                                id = R.drawable.mobile
+                                            )
+                                        ),
+                                        UserDataTableItem(0, "Full name", "test", isChecked = true)
+                                    )
+                                ) {
 
                                 }
 
                                 UserData(email = "test@tt.com", name = "John", state = false)
                                 UserData(email = "test@tt.com", name = "John", state = true)
-                                UserData(image = painterResource(id = R.drawable.sample_profile), email = "test@tt.com", name = "John", state = true)
+                                UserData(
+                                    image = painterResource(id = R.drawable.sample_profile),
+                                    email = "test@tt.com",
+                                    name = "John",
+                                    state = true
+                                )
 
-                                
+
                                 SampleItem(
                                     icon = painterResource(id = R.drawable.user_circle),
                                     title = "Account Information"
-                                ){}
-                                
+                                ) {}
+
                                 AmountReport(
                                     modifier = Modifier.padding(
                                         horizontal = 32.dp,
@@ -340,7 +422,7 @@ class MainActivity : ComponentActivity() {
                                 }
 
 
-                                repeat(3){
+                                repeat(3) {
 
                                     TransactionItem(
                                         modifier = Modifier

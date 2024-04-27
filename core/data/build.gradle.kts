@@ -32,11 +32,13 @@ android {
 
 dependencies {
     api(project(":core:database"))
+    api(project(":core:common"))
+    api(project(":core:datastore"))
+
     implementation(project(":core:analytics"))
-    implementation(project(":core:datastore"))
-    implementation(project(":core:common"))
 
 
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.kotlinx.serialization.json)
+    testImplementation(project(":core:data-test"))
 }

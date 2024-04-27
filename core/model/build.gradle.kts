@@ -1,9 +1,7 @@
 plugins {
-    id("java-library")
-    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.nowinandroid.jvm.library)
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+dependencies {
+    api(libs.kotlinx.datetime)
 }

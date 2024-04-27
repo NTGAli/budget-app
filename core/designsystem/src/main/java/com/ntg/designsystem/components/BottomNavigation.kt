@@ -23,17 +23,17 @@ import com.ntg.designsystem.model.NavigationItem
 
 @Composable
 fun BottomNavigation(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     items: List<NavigationItem>,
     onCLick: (Int) -> Unit,
 ) {
 
 
-    val firstItem = items.get(0)
-    val secondItem = items.get(1)
+    val firstItem = items[0]
+    val secondItem = items[1]
 
   Column(
-      modifier = modifier.background(MaterialTheme.colorScheme.background)
+      modifier = modifier.padding(bottom = 24.dp).background(MaterialTheme.colorScheme.background)
   ) {
       Divider()
       Row(

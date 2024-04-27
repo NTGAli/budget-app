@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.core.data.repository
+package com.ntg.data.repository
 
-import com.google.samples.apps.nowinandroid.core.model.data.DarkThemeConfig
-import com.google.samples.apps.nowinandroid.core.model.data.ThemeBrand
-import com.google.samples.apps.nowinandroid.core.model.data.UserData
+import com.ntg.model.data.DarkThemeConfig
+import com.ntg.model.data.ThemeBrand
+import com.ntg.model.data.UserData
 import kotlinx.coroutines.flow.Flow
 
 interface UserDataRepository {

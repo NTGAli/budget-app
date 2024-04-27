@@ -1,7 +1,7 @@
 package com.ntg.designsystem.util
 
 import android.util.Log
-import com.ntg.designsystem.R
+import com.ntg.budgetapp.core.designsystem.R
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale

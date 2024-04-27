@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.core.data.repository
+package com.ntg.data.repository
 
 import com.ntg.database.model.TransactionEntity
 import kotlinx.coroutines.flow.Flow

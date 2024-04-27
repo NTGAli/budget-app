@@ -15,15 +15,10 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import androidx.tracing.trace
 import com.ntg.data.repository.UserNewsResourceRepository
-import com.google.samples.apps.nowinandroid.core.ui.TrackDisposableJank
-import com.google.samples.apps.nowinandroid.feature.bookmarks.navigation.navigateToBookmarks
 import com.ntg.home.navigation.FOR_YOU_ROUTE
 import com.ntg.home.navigation.navigateToForYou
-import com.google.samples.apps.nowinandroid.feature.interests.navigation.navigateToInterests
-import com.google.samples.apps.nowinandroid.feature.search.navigation.navigateToSearch
 import com.ntg.budgetapp.nav.TopLevelDestination
 import com.ntg.data.util.NetworkMonitor
-import com.ntg.data.util.TimeZoneMonitor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -36,7 +31,7 @@ fun rememberNiaAppState(
     windowSizeClass: WindowSizeClass,
     networkMonitor: NetworkMonitor,
     userNewsResourceRepository: UserNewsResourceRepository,
-    timeZoneMonitor: TimeZoneMonitor,
+//    timeZoneMonitor: TimeZoneMonitor,
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     navController: NavHostController = rememberNavController(),
 ): NiaAppState {
@@ -47,7 +42,7 @@ fun rememberNiaAppState(
         windowSizeClass,
         networkMonitor,
         userNewsResourceRepository,
-        timeZoneMonitor,
+//        timeZoneMonitor,
     ) {
         NiaAppState(
             navController = navController,
@@ -55,7 +50,7 @@ fun rememberNiaAppState(
             windowSizeClass = windowSizeClass,
             networkMonitor = networkMonitor,
             userNewsResourceRepository = userNewsResourceRepository,
-            timeZoneMonitor = timeZoneMonitor,
+//            timeZoneMonitor = timeZoneMonitor,
         )
     }
 }
@@ -67,7 +62,7 @@ class NiaAppState(
     val windowSizeClass: WindowSizeClass,
     networkMonitor: NetworkMonitor,
     userNewsResourceRepository: UserNewsResourceRepository,
-    timeZoneMonitor: TimeZoneMonitor,
+//    timeZoneMonitor: TimeZoneMonitor,
 ) {
     val currentDestination: NavDestination?
         @Composable get() = navController
@@ -116,12 +111,12 @@ class NiaAppState(
                 initialValue = emptySet(),
             )
 
-    val currentTimeZone = timeZoneMonitor.currentTimeZone
-        .stateIn(
-            coroutineScope,
-            SharingStarted.WhileSubscribed(5_000),
-            System.currentTimeMillis(),
-        )
+//    val currentTimeZone = timeZoneMonitor.currentTimeZone
+//        .stateIn(
+//            coroutineScope,
+//            SharingStarted.WhileSubscribed(5_000),
+//            System.currentTimeMillis(),
+//        )
 
     /**
      * UI logic for navigating to a top level destination in the app. Top level destinations have
@@ -162,15 +157,15 @@ class NiaAppState(
  */
 @Composable
 private fun NavigationTrackingSideEffect(navController: NavHostController) {
-    TrackDisposableJank(navController) { metricsHolder ->
-        val listener = NavController.OnDestinationChangedListener { _, destination, _ ->
-            metricsHolder.state?.putState("Navigation", destination.route.toString())
-        }
-
-        navController.addOnDestinationChangedListener(listener)
-
-        onDispose {
-            navController.removeOnDestinationChangedListener(listener)
-        }
-    }
+//    TrackDisposableJank(navController) { metricsHolder ->
+//        val listener = NavController.OnDestinationChangedListener { _, destination, _ ->
+//            metricsHolder.state?.putState("Navigation", destination.route.toString())
+//        }
+//
+//        navController.addOnDestinationChangedListener(listener)
+//
+//        onDispose {
+//            navController.removeOnDestinationChangedListener(listener)
+//        }
+//    }
 }

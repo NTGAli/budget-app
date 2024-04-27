@@ -29,7 +29,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
-import com.ntg.designsystem.R
+import com.ntg.budgetapp.core.designsystem.R
 
 @Composable
 fun TextCheckBox(

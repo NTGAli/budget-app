@@ -17,19 +17,12 @@
 package com.ntg.data.di
 
 import com.ntg.data.repository.DefaultRecentSearchRepository
-import com.google.samples.apps.nowinandroid.core.data.repository.DefaultSearchContentsRepository
-import com.google.samples.apps.nowinandroid.core.data.repository.NewsRepository
-import com.google.samples.apps.nowinandroid.core.data.repository.OfflineFirstNewsRepository
-import com.google.samples.apps.nowinandroid.core.data.repository.OfflineFirstTopicsRepository
-import com.google.samples.apps.nowinandroid.core.data.repository.OfflineFirstUserDataRepository
-import com.google.samples.apps.nowinandroid.core.data.repository.RecentSearchRepository
-import com.google.samples.apps.nowinandroid.core.data.repository.SearchContentsRepository
-import com.google.samples.apps.nowinandroid.core.data.repository.TopicsRepository
-import com.google.samples.apps.nowinandroid.core.data.repository.UserDataRepository
+import com.ntg.data.repository.OfflineFirstUserDataRepository
+import com.ntg.data.repository.RecentSearchRepository
+import com.ntg.data.repository.UserDataRepository
 import com.ntg.data.util.ConnectivityManagerNetworkMonitor
 import com.ntg.data.util.NetworkMonitor
-import com.ntg.data.util.TimeZoneBroadcastMonitor
-import com.ntg.data.util.TimeZoneMonitor
+//import com.ntg.data.util.TimeZoneBroadcastMonitor
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -39,15 +32,15 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 abstract class DataModule {
 
-    @Binds
-    internal abstract fun bindsTopicRepository(
-        topicsRepository: OfflineFirstTopicsRepository,
-    ): TopicsRepository
+//    @Binds
+//    internal abstract fun bindsTopicRepository(
+//        topicsRepository: OfflineFirstTopicsRepository,
+//    ): TopicsRepository
 
-    @Binds
-    internal abstract fun bindsNewsResourceRepository(
-        newsRepository: OfflineFirstNewsRepository,
-    ): NewsRepository
+//    @Binds
+//    internal abstract fun bindsNewsResourceRepository(
+//        newsRepository: OfflineFirstNewsRepository,
+//    ): NewsRepository
 
     @Binds
     internal abstract fun bindsUserDataRepository(
@@ -59,16 +52,16 @@ abstract class DataModule {
         recentSearchRepository: DefaultRecentSearchRepository,
     ): RecentSearchRepository
 
-    @Binds
-    internal abstract fun bindsSearchContentsRepository(
-        searchContentsRepository: DefaultSearchContentsRepository,
-    ): SearchContentsRepository
+//    @Binds
+//    internal abstract fun bindsSearchContentsRepository(
+//        searchContentsRepository: DefaultSearchContentsRepository,
+//    ): SearchContentsRepository
 
     @Binds
     internal abstract fun bindsNetworkMonitor(
         networkMonitor: ConnectivityManagerNetworkMonitor,
     ): NetworkMonitor
 
-    @Binds
-    internal abstract fun binds(impl: TimeZoneBroadcastMonitor): TimeZoneMonitor
+//    @Binds
+//    internal abstract fun binds(impl: TimeZoneBroadcastMonitor): TimeZoneMonitor
 }

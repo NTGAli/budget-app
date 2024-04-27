@@ -45,7 +45,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.ntg.designsystem.R
+import com.ntg.budgetapp.core.designsystem.R
 import com.ntg.designsystem.util.detectCardType
 import com.ntg.designsystem.util.mask
 

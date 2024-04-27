@@ -27,8 +27,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.google.samples.apps.nowinandroid.R
-import com.ntg.analytics.LocalAnalyticsHelper
 import com.ntg.budgetapp.ui.theme.BudgetAppTheme
 import com.ntg.budgetapp.ui.theme.ChunLiBlue100
 import com.ntg.budgetapp.ui.theme.ChunLiBlue200

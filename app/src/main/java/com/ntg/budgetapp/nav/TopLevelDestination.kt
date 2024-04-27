@@ -19,7 +19,6 @@ package com.ntg.budgetapp.nav
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.google.samples.apps.nowinandroid.R
 import com.ntg.budgetapp.R
 
 /**

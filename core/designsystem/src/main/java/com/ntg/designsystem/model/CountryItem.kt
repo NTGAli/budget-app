@@ -4,7 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
-import com.ntg.designsystem.R
+import com.ntg.budgetapp.core.designsystem.R
 
 data class CountryItem(
     val id: Int,

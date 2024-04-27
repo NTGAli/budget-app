@@ -1,7 +1,6 @@
 
 package com.ntg.data.repository
 
-import com.google.samples.apps.nowinandroid.core.data.repository.NewsResourceQuery
 import com.ntg.model.data.UserNewsResource
 import kotlinx.coroutines.flow.Flow
 

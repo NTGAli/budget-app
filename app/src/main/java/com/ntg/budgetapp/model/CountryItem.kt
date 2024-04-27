@@ -1,10 +1,7 @@
 package com.ntg.budgetapp.model
 
 import androidx.annotation.DrawableRes
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.painterResource
-import com.google.samples.apps.nowinandroid.R
+import com.ntg.budgetapp.R
 
 data class CountryItem(
     val id: Int,

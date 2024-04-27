@@ -34,6 +34,7 @@ dependencies {
     api(project(":core:database"))
     implementation(project(":core:analytics"))
     implementation(project(":core:datastore"))
+    implementation(project(":core:common"))
 
 
     testImplementation(libs.kotlinx.coroutines.test)

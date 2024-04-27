@@ -40,7 +40,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.ntg.designsystem.R
+import com.ntg.budgetapp.core.designsystem.R
 import com.ntg.designsystem.util.CompressImage
 import java.io.File
 import java.io.FileOutputStream

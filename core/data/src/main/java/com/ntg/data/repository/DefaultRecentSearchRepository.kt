@@ -1,7 +1,5 @@
 package com.ntg.data.repository
 
-import com.google.samples.apps.nowinandroid.core.data.repository.RecentSearchRepository
-import com.ntg.data.model.asExternalModel
 import com.ntg.database.dao.TransactionsDao
 import com.ntg.database.model.TransactionEntity
 import kotlinx.coroutines.flow.Flow
@@ -24,7 +22,7 @@ internal class DefaultRecentSearchRepository @Inject constructor(
 
     override fun getRecentSearchQueries(limit: Int): Flow<List<TransactionEntity>> =
         recentSearchQueryDao.getRecentTransactions(limit).map { searchQueries ->
-            searchQueries.map { it.asExternalModel() }
+            searchQueries.map { it }
         }
 
     override suspend fun clearRecentSearches() = recentSearchQueryDao.clearRecentTransactions()

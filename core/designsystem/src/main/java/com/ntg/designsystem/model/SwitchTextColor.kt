@@ -8,5 +8,6 @@ data class SwitchTextColor(
     val firstColor: Color,
     val secondColor: Color,
     val firstBackColor: Color,
-    val secondBackColor: Color
+    val secondBackColor: Color,
+    val borderColor: Color,
 )

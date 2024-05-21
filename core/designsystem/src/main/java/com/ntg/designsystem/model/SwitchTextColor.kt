@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 data class SwitchTextColor(
+    val defaultColor: Color,
     val firstColor: Color,
     val secondColor: Color,
     val firstBackColor: Color,

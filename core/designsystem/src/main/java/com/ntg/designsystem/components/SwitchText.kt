@@ -97,7 +97,9 @@ fun SwitchText(
 
             ItemSelector(
                 text = firstText,
-                color = color
+                color = color,
+                isFirst = true,
+                isSelected = itemSelected == 1
             ) {
                 scope.launch {
                     offsetSelected.animateTo(it)
@@ -108,7 +110,8 @@ fun SwitchText(
 
             ItemSelector(
                 text = secondText,
-                color = color
+                color = color,
+                isSelected = itemSelected == 2
             ) {
                 scope.launch {
                     offsetSelected.animateTo(it)
@@ -129,6 +132,8 @@ fun SwitchText(
 private fun RowScope.ItemSelector(
     text: String,
     color: SwitchTextColor,
+    isSelected: Boolean,
+    isFirst: Boolean = false,
     onClick: (Offset) -> Unit
 ) {
 
@@ -149,7 +154,9 @@ private fun RowScope.ItemSelector(
                 itemOffset = it.boundsInRoot().topLeft
             },
         text = text,
-        style = MaterialTheme.typography.labelMedium.copy(color = color.firstColor),
+        style = MaterialTheme.typography.labelMedium.copy(color = if (isSelected)
+            if (isFirst) color.firstColor else color.secondColor
+        else color.defaultColor),
         textAlign = TextAlign.Center
     )
 }
@@ -158,6 +165,7 @@ private fun RowScope.ItemSelector(
 @Composable
 private fun defaultSwitchTextColor(): SwitchTextColor {
     return SwitchTextColor(
+        defaultColor = MaterialTheme.colorScheme.secondary,
         firstColor = MaterialTheme.colorScheme.error,
         secondColor = MaterialTheme.colorScheme.tertiary,
         firstBackColor = MaterialTheme.colorScheme.errorContainer,

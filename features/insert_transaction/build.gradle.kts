@@ -1,3 +1,13 @@
+dependencies {
+
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.test.espresso.core)
+}
+
 plugins {
     alias(libs.plugins.nowinandroid.android.feature)
     alias(libs.plugins.nowinandroid.android.library.compose)
@@ -6,7 +16,7 @@ plugins {
 }
 
 android {
-    namespace = "com.ntg.budgetapp.feature.home"
+    namespace = "com.ntg.insert_transaction"
 }
 
 dependencies {

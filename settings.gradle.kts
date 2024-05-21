@@ -32,3 +32,4 @@ include(":core:data-test")
 include(":lint")
 
 include(":core:datastore-test")
+include(":features:insert_transaction")

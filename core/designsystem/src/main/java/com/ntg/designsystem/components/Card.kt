@@ -7,6 +7,8 @@ import androidx.compose.animation.core.animateIntAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,6 +28,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -55,7 +58,8 @@ fun Card(
     card: ImageVector,
     cardNumber: String,
     name: String,
-    fullView: Boolean = false
+    fullView: Boolean = false,
+    onClick:()-> Unit = {}
 ) {
 
     var imageModifier by remember {
@@ -97,26 +101,16 @@ fun Card(
     )
 
 
-//    if (fullView){
-////        modifier.height(172.dp)
-//        imageModifier= Modifier.fillMaxWidth().height(172.dp).clip(RoundedCornerShape(20.dp))
-//        Log.d("HHHHHH", height.toString())
-//    }else{
-//        imageModifier = Modifier.fillMaxWidth()
-////        modifier.height(475.dp)
-//    }
-
-//    modifier.height(100.dp)
-
     Log.d("animatedHeight", animatedHeight.value.toString())
 
     Box(
         modifier
+            .clickable(
+                indication = null,
+                onClick = onClick,
+                interactionSource = remember { MutableInteractionSource() })
             .height(animatedHeight.value.dp)
             .onGloballyPositioned { layoutCoordinates ->
-//        if (!fullView){
-//            height = 500
-//        }
                 Log.d("LLLLLLLLLLLL", height.toString())
 
             }) {
@@ -125,12 +119,9 @@ fun Card(
             modifier = imageModifier
                 .clip(RoundedCornerShape(20.dp))
                 .onGloballyPositioned { layoutCoordinates ->
-//                if (!fullView){
                     if (height == 0.dp) {
                         height = with(localDensity) { layoutCoordinates.size.height.toDp() }
                     }
-//                }
-                    Log.d("LLLLLLLLLLLL --- :", height.toString())
 
                 },
             imageVector = card, contentDescription = null, contentScale = ContentScale.Crop

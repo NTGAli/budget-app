@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.ntg.budgetapp.core.designsystem.R
@@ -23,6 +24,7 @@ fun Chips(
     title: String = "",
     dismiss: Boolean,
     icon: Painter? = null,
+    iconVector: ImageVector? = null,
     onClick:()-> Unit
 ){
 
@@ -34,7 +36,7 @@ fun Chips(
             ,
         verticalAlignment = Alignment.CenterVertically) {
 
-        if (icon == null){
+        if (icon == null && iconVector == null){
 
             Text(
                 modifier = Modifier.padding(vertical = 4.dp),
@@ -45,9 +47,15 @@ fun Chips(
                     painter = painterResource(id = R.drawable.remove_circle), contentDescription = "dismiss")
             }
         }else{
-            Icon(
-                modifier = Modifier.padding(vertical = 6.dp, horizontal = 8.dp),
-                painter = icon, contentDescription = null)
+            if (icon != null){
+                Icon(
+                    modifier = Modifier.padding(vertical = 6.dp, horizontal = 8.dp),
+                    painter = icon, contentDescription = null)
+            }else{
+                Icon(
+                    modifier = Modifier.padding(vertical = 6.dp, horizontal = 8.dp),
+                    imageVector = iconVector!!, contentDescription = null)
+            }
         }
 
     }

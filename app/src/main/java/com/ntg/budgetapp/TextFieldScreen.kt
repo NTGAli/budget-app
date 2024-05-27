@@ -1,7 +1,6 @@
 package com.ntg.budgetapp
 
 import android.util.Log
-import android.widget.Toast
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -30,9 +29,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 import com.ntg.budgetapp.model.countryList
-import com.ntg.budgetapp.nav.ScreenPath
 import com.ntg.budgetapp.ui.theme.ChunLiBlue100
 import com.ntg.budgetapp.ui.theme.ChunLiBlue200
 import com.ntg.budgetapp.ui.theme.ChunLiBlue300
@@ -49,9 +46,9 @@ import com.ntg.designsystem.components.ButtonType
 import com.ntg.designsystem.components.Card
 import com.ntg.designsystem.components.Chips
 import com.ntg.designsystem.components.CircleChart
-import com.ntg.designsystem.components.CustomOutlineTextField
+import com.ntg.designsystem.components.TextField
 import com.ntg.designsystem.components.DetailsTable
-import com.ntg.designsystem.components.ImageItem
+import com.ntg.designsystem.components.ImagePicker
 import com.ntg.designsystem.components.MessageBox
 import com.ntg.designsystem.components.SampleItem
 import com.ntg.designsystem.components.Table
@@ -126,7 +123,7 @@ fun TextFieldScreen(id: Int?) {
 
                 Text(text = "Default", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
-                CustomOutlineTextField(
+                TextField(
                     value = default,
                     onValueChange = {
                         default = it
@@ -138,7 +135,7 @@ fun TextFieldScreen(id: Int?) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "Disabled", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
-                CustomOutlineTextField(
+                TextField(
                     value = disabled,
                     onValueChange = {
                         disabled = it
@@ -149,7 +146,7 @@ fun TextFieldScreen(id: Int?) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "Focused", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
-                CustomOutlineTextField(
+                TextField(
                     value = focused,
                     onValueChange = {
                         focused = it
@@ -159,7 +156,7 @@ fun TextFieldScreen(id: Int?) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "Dropdown", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
-                CustomOutlineTextField(
+                TextField(
                     isCountryShowing = true,
                     modifier = Modifier.clickable(
                         indication = null,
@@ -216,7 +213,7 @@ fun TextFieldScreen(id: Int?) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "Unit", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
-                CustomOutlineTextField(
+                TextField(
                     value = unit,
                     onValueChange = {
                         unit = it
@@ -227,7 +224,7 @@ fun TextFieldScreen(id: Int?) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "Success", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
-                CustomOutlineTextField(
+                TextField(
                     readOnly = true,
                     isOk = true,
                     value = success,
@@ -239,7 +236,7 @@ fun TextFieldScreen(id: Int?) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "SuccessLine", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
-                CustomOutlineTextField(
+                TextField(
                     isOk = true,
                     enabled = false,
                     value = successLine,
@@ -251,7 +248,7 @@ fun TextFieldScreen(id: Int?) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "SuccessHelpText", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
-                CustomOutlineTextField(
+                TextField(
                     isOk = true,
                     okText = "test",
                     enabled = false,
@@ -265,7 +262,7 @@ fun TextFieldScreen(id: Int?) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "Error", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
-                CustomOutlineTextField(
+                TextField(
                     readOnly = true,
                     isError = true,
                     value = error,
@@ -277,7 +274,7 @@ fun TextFieldScreen(id: Int?) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "ErrorLine", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
-                CustomOutlineTextField(
+                TextField(
                     isError = true,
                     enabled = false,
                     value = errorLine,
@@ -289,7 +286,7 @@ fun TextFieldScreen(id: Int?) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "ErrorHelpText", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
-                CustomOutlineTextField(
+                TextField(
                     isError = true,
                     errorText = "test",
                     enabled = false,
@@ -303,7 +300,7 @@ fun TextFieldScreen(id: Int?) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "Warning", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
-                CustomOutlineTextField(
+                TextField(
                     readOnly = true,
                     isWarning = true,
                     value = warning,
@@ -315,7 +312,7 @@ fun TextFieldScreen(id: Int?) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "WarningLine", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
-                CustomOutlineTextField(
+                TextField(
                     isWarning = true,
                     enabled = false,
                     value = warningLine,
@@ -327,7 +324,7 @@ fun TextFieldScreen(id: Int?) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "WarningHelpText", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(1.dp))
-                CustomOutlineTextField(
+                TextField(
                     isWarning = true,
                     warningText = "test",
                     enabled = false,
@@ -397,7 +394,7 @@ fun TextFieldScreen(id: Int?) {
                             "Categories", "Count"
                         )
 
-                        ImageItem(
+                        ImagePicker(
                             modifier = Modifier.padding(
                                 horizontal = 24.dp,
                                 vertical = 16.dp

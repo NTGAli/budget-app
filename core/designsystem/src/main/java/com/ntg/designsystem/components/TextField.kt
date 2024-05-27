@@ -1,6 +1,5 @@
 package com.ntg.designsystem.components
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,7 +11,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -25,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.ntg.budgetapp.core.designsystem.R
 
 @Composable
-fun CustomOutlineTextField(
+fun TextField(
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
@@ -49,6 +47,9 @@ fun CustomOutlineTextField(
     warningText: String? = null,
     showSupportingText: Boolean = false,
     isCountryShowing: Boolean = false,
+    singleLine: Boolean = true,
+    maxLine: Int = 1,
+    minLine: Int = 1,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
@@ -56,21 +57,21 @@ fun CustomOutlineTextField(
 ) {
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth(),
         contentAlignment = Alignment.Center
     ) {
         OutlinedTextField(
             value = value,
             onValueChange = onValueChange,
-            modifier = modifier,
+            modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             readOnly = readOnly,
             textStyle = MaterialTheme.typography.labelLarge,
             label = {
                 Text(
                     text = label.orEmpty(),
-                    style = MaterialTheme.typography.labelSmall.copy(
+                    style = MaterialTheme.typography.labelMedium.copy(
                         fontWeight = FontWeight.SemiBold,
                     )
                 )
@@ -162,9 +163,9 @@ fun CustomOutlineTextField(
             visualTransformation = visualTransformation,
             keyboardOptions = keyboardOptions,
             keyboardActions = keyboardActions,
-            singleLine = true,
-            maxLines = 1,
-            minLines = 1,
+            singleLine = singleLine,
+            maxLines = maxLine,
+            minLines = minLine,
             interactionSource = interactionSource,
             shape = RoundedCornerShape(16.dp),
             colors = OutlinedTextFieldDefaults.colors(

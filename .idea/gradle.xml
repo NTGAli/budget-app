@@ -39,6 +39,7 @@
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/home" />
             <option value="$PROJECT_DIR$/features/insert_transaction" />
+            <option value="$PROJECT_DIR$/features/setup" />
             <option value="$PROJECT_DIR$/lint" />
           </set>
         </option>

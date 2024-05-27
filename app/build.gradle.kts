@@ -58,6 +58,8 @@ android {
 
 dependencies {
     implementation(project(":features:home"))
+    implementation(project(":features:setup"))
+    implementation(project(":features:insert_transaction"))
 
     implementation(project(":core:common"))
     implementation(project(":core:designsystem"))

@@ -64,9 +64,7 @@ fun SwitchText(
         modifier = modifier
             .height(IntrinsicSize.Min)
             .onGloballyPositioned {
-                if (it?.size?.width != null) {
-                    width = it.size?.width!! / 2
-                }
+                width = it.size.width / 2
             }
             .border(
                 color = color.borderColor,
@@ -152,12 +150,13 @@ private fun RowScope.ItemSelector(
                 indication = null,
                 onClick = { onClick.invoke(itemOffset) })
             .weight(1f)
-            .padding(vertical = 16.dp)
-            ,
+            .padding(vertical = 16.dp),
         text = text,
-        style = MaterialTheme.typography.labelMedium.copy(color = if (isSelected)
-            if (isFirst) color.firstColor else color.secondColor
-        else color.defaultColor),
+        style = MaterialTheme.typography.labelMedium.copy(
+            color = if (isSelected)
+                if (isFirst) color.firstColor else color.secondColor
+            else color.defaultColor
+        ),
         textAlign = TextAlign.Center
     )
 }

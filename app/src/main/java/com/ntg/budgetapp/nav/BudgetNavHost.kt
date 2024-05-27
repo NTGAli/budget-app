@@ -6,13 +6,17 @@ import androidx.navigation.compose.NavHost
 import com.ntg.budgetapp.ui.NiaAppState
 import com.ntg.home.navigation.Home_Route
 import com.ntg.home.navigation.homeScreen
+import com.ntg.insert_transaction.navigation.TransactionInput_Route
+import com.ntg.insert_transaction.navigation.transactionInputScreen
+import com.ntg.setup.navigation.Currency_Route
+import com.ntg.setup.navigation.setupScreen
 
 @Composable
 fun BudgetNavHost(
     appState: NiaAppState,
     onShowSnackbar: suspend (String, String?) -> Boolean,
     modifier: Modifier = Modifier,
-    startDestination: String = Home_Route,
+    startDestination: String = TransactionInput_Route,
 ) {
     val navController = appState.navController
     NavHost(
@@ -21,6 +25,8 @@ fun BudgetNavHost(
         modifier = modifier,
     ) {
         homeScreen()
+        setupScreen()
+        transactionInputScreen()
 //        homeScreen(onTopicClick = navController::navigateToInterests)
 //        bookmarksScreen(
 //            onTopicClick = navController::navigateToInterests,

@@ -30,8 +30,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.layout.boundsInRoot
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.positionInParent
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -47,7 +47,6 @@ fun SwitchText(
 ) {
 
 
-    val density = LocalDensity.current
     val scope = rememberCoroutineScope()
 
     var width by remember {
@@ -65,8 +64,8 @@ fun SwitchText(
         modifier = modifier
             .height(IntrinsicSize.Min)
             .onGloballyPositioned {
-                if (it.parentCoordinates?.size?.width != null) {
-                    width = it.parentCoordinates?.size?.width!! / 2
+                if (it?.size?.width != null) {
+                    width = it.size?.width!! / 2
                 }
             }
             .border(
@@ -102,7 +101,8 @@ fun SwitchText(
                 isSelected = itemSelected == 1
             ) {
                 scope.launch {
-                    offsetSelected.animateTo(it)
+                    offsetSelected.animateTo(Offset(x = it, y = offsetSelected.value.y))
+
                 }
                 itemSelected = 1
             }
@@ -114,7 +114,7 @@ fun SwitchText(
                 isSelected = itemSelected == 2
             ) {
                 scope.launch {
-                    offsetSelected.animateTo(it)
+                    offsetSelected.animateTo(Offset(x = it, y = offsetSelected.value.y))
                 }
                 itemSelected = 2
             }
@@ -134,15 +134,18 @@ private fun RowScope.ItemSelector(
     color: SwitchTextColor,
     isSelected: Boolean,
     isFirst: Boolean = false,
-    onClick: (Offset) -> Unit
+    onClick: (Float) -> Unit
 ) {
 
     var itemOffset by remember {
-        mutableStateOf(Offset.Zero)
+        mutableStateOf(0f)
     }
 
     Text(
         modifier = Modifier
+            .onGloballyPositioned {
+                itemOffset = it.positionInParent().x
+            }
             .clip(RoundedCornerShape(8.dp))
             .clickable(
                 interactionSource = MutableInteractionSource(),
@@ -150,9 +153,7 @@ private fun RowScope.ItemSelector(
                 onClick = { onClick.invoke(itemOffset) })
             .weight(1f)
             .padding(vertical = 16.dp)
-            .onGloballyPositioned {
-                itemOffset = it.boundsInRoot().topLeft
-            },
+            ,
         text = text,
         style = MaterialTheme.typography.labelMedium.copy(color = if (isSelected)
             if (isFirst) color.firstColor else color.secondColor

@@ -1,49 +1,64 @@
 package com.ntg.insert_transaction
 
 import android.util.Log
-import android.view.SurfaceControl.Transaction
-import android.widget.Toast
+import android.widget.TimePicker
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.DatePicker
+import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDatePickerState
+import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.ntg.common.util.formatDate
+import com.ntg.common.util.getCurrentTime
 import com.ntg.designsystem.components.Button
 import com.ntg.designsystem.components.ButtonSize
 import com.ntg.designsystem.components.ButtonStyle
 import com.ntg.designsystem.components.ButtonType
 import com.ntg.designsystem.components.Chips
+import com.ntg.designsystem.components.DatePicker
 import com.ntg.designsystem.components.ImagePicker
 import com.ntg.designsystem.components.SwitchText
 import com.ntg.designsystem.components.TextDivider
 import com.ntg.designsystem.components.TextField
+import com.ntg.designsystem.components.TimePicker
 import java.util.Calendar
+import java.util.Date
 
 @Composable
 fun TransactionInputRute() {
@@ -63,17 +78,27 @@ fun TransactionInputScreen() {
 }
 
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 private fun Content(
     paddingValues: PaddingValues
 ) {
 
-    var focused by remember { mutableStateOf("") }
-    val focusedLabel by remember { mutableStateOf("Focused") }
+    val focused = remember { mutableStateOf("") }
+    val tag = remember { mutableStateOf("") }
+    val tags = remember {
+        mutableStateListOf<String>()
+    }
 
-    var showDatePicker by remember {
-        mutableStateOf(true)
+    val dateSelected = remember { mutableStateOf(formatDate(Date(System.currentTimeMillis()))) }
+    val timeSelected = remember { mutableStateOf(getCurrentTime()) }
+
+    val showDatePicker = remember {
+        mutableStateOf(false)
+    }
+
+    val showTimePicker = remember {
+        mutableStateOf(false)
     }
 
     Box(modifier = Modifier.fillMaxHeight()) {
@@ -81,6 +106,7 @@ private fun Content(
             modifier = Modifier
                 .padding(horizontal = 32.dp)
                 .verticalScroll(rememberScrollState())
+                .padding(bottom = 64.dp)
         ) {
 
             SwitchText(
@@ -90,26 +116,30 @@ private fun Content(
                 firstText = "Outcome", secondText = "Income"
             )
 
-
             TextField(
                 modifier = Modifier.padding(top = 16.dp),
                 value = focused,
-                onValueChange = {
-                    focused = it
-                },
-                label = "Date & Time",
-            )
-
-
-            TextField(
-                modifier = Modifier.padding(top = 16.dp),
-                value = focused,
-                onValueChange = {
-                    focused = it
-                },
                 label = "Amount",
                 trailingIcon = { Text(text = "lbs", color = MaterialTheme.colorScheme.outline) }
             )
+
+            TextField(
+                modifier = Modifier.padding(top = 16.dp),
+                value = dateSelected,
+                label = "Date",
+                readOnly = true
+            ) {
+                showDatePicker.value= true
+            }
+
+            TextField(
+                modifier = Modifier.padding(top = 16.dp),
+                value = timeSelected,
+                label = "Time",
+                readOnly = true
+            ){
+                showTimePicker.value = true
+            }
 
             ImagePicker(
                 modifier = Modifier.padding(top = 24.dp)
@@ -118,9 +148,6 @@ private fun Content(
             TextField(
                 modifier = Modifier.padding(top = 16.dp),
                 value = focused,
-                onValueChange = {
-                    focused = it
-                },
                 label = "Category",
             )
 
@@ -129,25 +156,50 @@ private fun Content(
                 title = "Tags"
             )
 
-            Chips(
-                modifier = Modifier.padding(top = 16.dp),
-                dismiss = false,
-                iconVector = Icons.Default.Add
-            ) {
 
+            TextField(
+                modifier = Modifier.padding(top = 16.dp),
+                value = tag,
+                label = "Tag",
+                trailingIcon = {
+                    IconButton(onClick = {
+                        if (tag.value.isNotEmpty()){
+                            tags.add(tag.value)
+                            tag.value = ""
+                        }
+                    }) {
+                        Icon(imageVector = Icons.Rounded.Add, contentDescription = null)
+                    }
+                }
+            )
+
+            FlowRow(
+                modifier = Modifier.padding(8.dp),
+            ) {
+                repeat(tags.size) { index ->
+                    Chips(
+                        modifier = Modifier.padding(top = 8.dp, end = 8.dp),
+                        dismiss = false,
+                        title = tags[index],
+                        isSelected = true
+                    ) {
+
+                    }
+                }
             }
+
 
             TextField(
                 modifier = Modifier.padding(top = 24.dp),
                 value = focused,
-                onValueChange = {
-                    focused = it
-                },
                 label = "Description",
                 singleLine = false,
                 maxLine = 5,
                 minLine = 5
             )
+
+
+            Spacer(modifier = Modifier.padding(64.dp))
 
         }
 
@@ -156,53 +208,32 @@ private fun Content(
 
     }
 
-    val date = remember {
-        Calendar.getInstance().apply {
-            set(Calendar.YEAR, 2023)
-            set(Calendar.MONTH, 7)
-            set(Calendar.DAY_OF_MONTH, 23)
-        }.timeInMillis
-    }
+//    val date = remember {
+//        Calendar.getInstance().apply {
+//            set(Calendar.YEAR, 2023)
+//            set(Calendar.MONTH, 7)
+//            set(Calendar.DAY_OF_MONTH, 23)
+//        }.timeInMillis
+//    }
 
     val datePickerState = rememberDatePickerState(
         initialSelectedDateMillis = System.currentTimeMillis(),
         yearRange = 2015..2030
     )
 
+
     val context = LocalContext.current
 
     // date picker component
-    if (showDatePicker) {
-        DatePickerDialog(
-            onDismissRequest = { /*TODO*/ },
-            confirmButton = {
-                Button(text = "Select", style = ButtonStyle.TextOnly, size = ButtonSize.MD) {
-                    val selectedDate = Calendar.getInstance().apply {
-                        timeInMillis = datePickerState.selectedDateMillis!!
-                    }
-
-                    Toast.makeText(
-                        context,
-                        "Selected date ${selectedDate.time} saved",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            },
-            dismissButton = {
-                Button(
-                    text = "Close",
-                    style = ButtonStyle.TextOnly,
-                    type = ButtonType.Error,
-                    size = ButtonSize.MD
-                ){
-                    showDatePicker = false
-                }
-            },
-        )
-        {
-            DatePicker(state = datePickerState)
-        }
+    DatePicker(showDatePicker){
+        dateSelected.value = formatDate(it)
     }
+
+
+    TimePicker(showTimePicker = showTimePicker){
+        timeSelected.value = it
+    }
+
 
 }
 
@@ -211,7 +242,9 @@ private fun Content(
 private fun BoxScope.BottomBar() {
 
     Column(
-        modifier = Modifier.align(Alignment.BottomCenter)
+        modifier = Modifier
+            .align(Alignment.BottomCenter)
+            .background(MaterialTheme.colorScheme.background)
     ) {
         HorizontalDivider(color = MaterialTheme.colorScheme.surfaceVariant)
         Button(

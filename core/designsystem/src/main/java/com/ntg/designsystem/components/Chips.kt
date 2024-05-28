@@ -23,38 +23,48 @@ fun Chips(
     modifier: Modifier,
     title: String = "",
     dismiss: Boolean,
+    isSelected: Boolean = false,
     icon: Painter? = null,
     iconVector: ImageVector? = null,
-    onClick:()-> Unit
-){
+    onClick: () -> Unit
+) {
 
     Row(
-        modifier = modifier.background(shape = RoundedCornerShape(64.dp), color = MaterialTheme.colorScheme.surface)
+        modifier = modifier
+            .background(
+                shape = RoundedCornerShape(64.dp),
+                color = if (isSelected) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surface
+            )
             .clip(RoundedCornerShape(64.dp))
             .clickable { onClick.invoke() }
-            .padding(horizontal = 8.dp)
-            ,
+            .padding(horizontal = 8.dp),
         verticalAlignment = Alignment.CenterVertically) {
 
-        if (icon == null && iconVector == null){
+        if (icon == null && iconVector == null) {
 
             Text(
                 modifier = Modifier.padding(vertical = 4.dp),
-                text = title, style = MaterialTheme.typography.labelSmall.copy(color = MaterialTheme.colorScheme.onSurface))
-            if (dismiss){
+                text = title,
+                style = MaterialTheme.typography.labelSmall.copy(color = if (isSelected) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSurface)
+            )
+            if (dismiss) {
                 Icon(
                     modifier = Modifier.padding(start = 4.dp),
-                    painter = painterResource(id = R.drawable.remove_circle), contentDescription = "dismiss")
+                    painter = painterResource(id = R.drawable.remove_circle),
+                    contentDescription = "dismiss"
+                )
             }
-        }else{
-            if (icon != null){
+        } else {
+            if (icon != null) {
                 Icon(
                     modifier = Modifier.padding(vertical = 6.dp, horizontal = 8.dp),
-                    painter = icon, contentDescription = null)
-            }else{
+                    painter = icon, contentDescription = null
+                )
+            } else {
                 Icon(
                     modifier = Modifier.padding(vertical = 6.dp, horizontal = 8.dp),
-                    imageVector = iconVector!!, contentDescription = null)
+                    imageVector = iconVector!!, contentDescription = null
+                )
             }
         }
 

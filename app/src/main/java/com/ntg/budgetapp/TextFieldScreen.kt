@@ -70,46 +70,46 @@ import com.ntg.designsystem.model.UserDataTableItem
 fun TextFieldScreen(id: Int?) {
     val selectedCountry = countryList.find { it.id == id }
     val context = LocalContext.current
-    var default by remember { mutableStateOf("Test") }
+    var default = remember { mutableStateOf("Test") }
     val defaultLabel by remember { mutableStateOf("Default") }
 
-    var disabled by remember { mutableStateOf("Test") }
+    var disabled = remember { mutableStateOf("Test") }
     val disabledLabel by remember { mutableStateOf("Disabled") }
 
-    var focused by remember { mutableStateOf("") }
+    var focused = remember { mutableStateOf("") }
     val focusedLabel by remember { mutableStateOf("Focused") }
 
-    var dropdown by remember { mutableStateOf(selectedCountry?.name ?: "") }
+    var dropdown = remember { mutableStateOf(selectedCountry?.name ?: "") }
     val dropdownLabel by remember { mutableStateOf("Country") }
 
-    var unit by remember { mutableStateOf("Select") }
+    var unit = remember { mutableStateOf("Select") }
     val unitLabel by remember { mutableStateOf("Unit") }
 
-    var success by remember { mutableStateOf("Test") }
+    var success = remember { mutableStateOf("Test") }
     val successLabel by remember { mutableStateOf("success") }
 
-    var successLine by remember { mutableStateOf("Test") }
+    var successLine = remember { mutableStateOf("Test") }
     val successLineLabel by remember { mutableStateOf("SuccessLine") }
 
-    var successHelpText by remember { mutableStateOf("Test") }
+    var successHelpText = remember { mutableStateOf("Test") }
     val successHelpTextLabel by remember { mutableStateOf("successHelpText") }
 
-    var error by remember { mutableStateOf("Test") }
+    var error = remember { mutableStateOf("Test") }
     val errorLabel by remember { mutableStateOf("error") }
 
-    var errorLine by remember { mutableStateOf("Test") }
+    var errorLine = remember { mutableStateOf("Test") }
     val errorLineLabel by remember { mutableStateOf("errorLine") }
 
-    var errorHelpText by remember { mutableStateOf("Test") }
+    var errorHelpText = remember { mutableStateOf("Test") }
     val errorHelpTextLabel by remember { mutableStateOf("errorHelpText") }
 
-    var warning by remember { mutableStateOf("Test") }
+    var warning = remember { mutableStateOf("Test") }
     val warningLabel by remember { mutableStateOf("warning") }
 
-    var warningLine by remember { mutableStateOf("Test") }
+    var warningLine = remember { mutableStateOf("Test") }
     val warningLineLabel by remember { mutableStateOf("warningLine") }
 
-    var warningHelpText by remember { mutableStateOf("Test") }
+    var warningHelpText = remember { mutableStateOf("Test") }
     val warningHelpTextLabel by remember { mutableStateOf("warningHelpText") }
 
 
@@ -125,9 +125,6 @@ fun TextFieldScreen(id: Int?) {
                 Spacer(modifier = Modifier.height(1.dp))
                 TextField(
                     value = default,
-                    onValueChange = {
-                        default = it
-                    },
                     label = defaultLabel,
                     enabled = false,
                     readOnly = true
@@ -137,9 +134,6 @@ fun TextFieldScreen(id: Int?) {
                 Spacer(modifier = Modifier.height(1.dp))
                 TextField(
                     value = disabled,
-                    onValueChange = {
-                        disabled = it
-                    },
                     label = disabledLabel,
                     enabled = false
                 )
@@ -148,9 +142,6 @@ fun TextFieldScreen(id: Int?) {
                 Spacer(modifier = Modifier.height(1.dp))
                 TextField(
                     value = focused,
-                    onValueChange = {
-                        focused = it
-                    },
                     label = focusedLabel,
                 )
                 Spacer(modifier = Modifier.height(12.dp))
@@ -169,15 +160,11 @@ fun TextFieldScreen(id: Int?) {
 //                            Toast.LENGTH_SHORT
 //                        ).show()
                     },
-                    value = if (selectedCountry?.name?.isEmpty() == true) dropdown else selectedCountry?.name
-                        ?: "",
-                    onValueChange = {
-                        dropdown = it
-                    },
+                    value = error,
                     label = dropdownLabel,
                     enabled = false,
                     trailingIcon = {
-                        if (dropdown.isNotEmpty()) {
+                        if (dropdown.value.isNotEmpty()) {
                             Icon(
                                 modifier = Modifier.size(24.dp),
                                 painter = painterResource(id = R.drawable.ic_down_arrow),
@@ -215,9 +202,6 @@ fun TextFieldScreen(id: Int?) {
                 Spacer(modifier = Modifier.height(1.dp))
                 TextField(
                     value = unit,
-                    onValueChange = {
-                        unit = it
-                    },
                     label = unitLabel,
                     trailingIcon = { Text(text = "lbs", color = Void300) }
                 )
@@ -228,9 +212,6 @@ fun TextFieldScreen(id: Int?) {
                     readOnly = true,
                     isOk = true,
                     value = success,
-                    onValueChange = {
-                        success = it
-                    },
                     label = successLabel,
                 )
                 Spacer(modifier = Modifier.height(12.dp))
@@ -240,9 +221,6 @@ fun TextFieldScreen(id: Int?) {
                     isOk = true,
                     enabled = false,
                     value = successLine,
-                    onValueChange = {
-                        successLine = it
-                    },
                     label = successLineLabel,
                 )
                 Spacer(modifier = Modifier.height(12.dp))
@@ -254,9 +232,6 @@ fun TextFieldScreen(id: Int?) {
                     enabled = false,
                     showSupportingText = true,
                     value = successHelpText,
-                    onValueChange = {
-                        successHelpText = it
-                    },
                     label = successHelpTextLabel,
                 )
                 Spacer(modifier = Modifier.height(12.dp))
@@ -266,9 +241,6 @@ fun TextFieldScreen(id: Int?) {
                     readOnly = true,
                     isError = true,
                     value = error,
-                    onValueChange = {
-                        error = it
-                    },
                     label = errorLabel,
                 )
                 Spacer(modifier = Modifier.height(12.dp))
@@ -278,9 +250,6 @@ fun TextFieldScreen(id: Int?) {
                     isError = true,
                     enabled = false,
                     value = errorLine,
-                    onValueChange = {
-                        errorLine = it
-                    },
                     label = errorLineLabel,
                 )
                 Spacer(modifier = Modifier.height(12.dp))
@@ -292,9 +261,6 @@ fun TextFieldScreen(id: Int?) {
                     enabled = false,
                     showSupportingText = true,
                     value = errorHelpText,
-                    onValueChange = {
-                        errorHelpText = it
-                    },
                     label = errorHelpTextLabel,
                 )
                 Spacer(modifier = Modifier.height(12.dp))
@@ -304,9 +270,6 @@ fun TextFieldScreen(id: Int?) {
                     readOnly = true,
                     isWarning = true,
                     value = warning,
-                    onValueChange = {
-                        warning = it
-                    },
                     label = warningLabel,
                 )
                 Spacer(modifier = Modifier.height(12.dp))
@@ -316,9 +279,6 @@ fun TextFieldScreen(id: Int?) {
                     isWarning = true,
                     enabled = false,
                     value = warningLine,
-                    onValueChange = {
-                        warningLine = it
-                    },
                     label = warningLineLabel,
                 )
                 Spacer(modifier = Modifier.height(12.dp))
@@ -330,9 +290,6 @@ fun TextFieldScreen(id: Int?) {
                     enabled = false,
                     showSupportingText = true,
                     value = warningHelpText,
-                    onValueChange = {
-                        warningHelpText = it
-                    },
                     label = warningHelpTextLabel,
                 )
 

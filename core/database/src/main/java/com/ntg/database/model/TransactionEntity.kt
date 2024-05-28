@@ -7,10 +7,16 @@ import androidx.room.PrimaryKey
     tableName = "transaction",
 )
 data class TransactionEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int?=null,
+    @PrimaryKey(autoGenerate = false)
+    val id: Int,
     val amount: String,
-    val type: String,
+    val type: Int,
     val date: String,
+    val time: String,
+    val timeStamp: String,
+    val images: List<String>?=null,
+    val catId: String,
+    val tag: List<String>?=null,
+    val description: String?=null,
 )
 

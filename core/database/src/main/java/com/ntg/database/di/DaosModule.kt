@@ -17,6 +17,7 @@
 package com.ntg.database.di
 
 import com.ntg.database.AppDatabase
+import com.ntg.database.dao.CategoryDao
 import com.ntg.database.dao.TransactionsDao
 import dagger.Module
 import dagger.Provides
@@ -27,8 +28,14 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 internal object DaosModule {
     @Provides
-    fun providesTopicsDao(
+    fun providesTransactionDao(
         database: AppDatabase,
     ): TransactionsDao = database.transactionDao()
+
+
+    @Provides
+    fun providesCategoryDao(
+        database: AppDatabase,
+    ): CategoryDao = database.categoryDao()
 
 }
